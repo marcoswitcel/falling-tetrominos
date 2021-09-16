@@ -167,9 +167,9 @@ export class TetrisArena {
         this.width = width;
         this.height = height;
         this.state = ARENA_STATE.RUNNING;
-        this.fallingBlock = new FallingBlock(0, 0, TetrisBlockManager.getRandomBlockMatrix());
         this.filledMatrix = createMatrix(width, height); 
         this.arenaMatrix = createMatrix(width, height);
+        this.newBlock(); // Inicializa primeiro bloco
         this.score = 0;
 
         this.cumulatedTime = 0;
@@ -214,13 +214,41 @@ export class TetrisArena {
         } else {
             this.fallingBlock.y--;
             this.filledMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
+            this.clearAndComputeScore();
             this.newBlock();
             this.arenaMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
         }
     }
 
+    clearAndComputeScore() {
+        let rowsCleared = 0 ;
+        const newFilledMatrix = createMatrix(this.width, this.height);
+
+        for (let row of this.filledMatrix) {
+            if (!row.some(value => value === 0)) {
+                rowsCleared++;
+                row.fill(0);
+            }
+        }
+
+        for (let row = this.filledMatrix.length,  rowNewFilled = this.filledMatrix.length - 1; row--;) {
+            if (this.filledMatrix[row].some(value => value > 0)) {
+                for (let col = this.filledMatrix[row].length; col--;) {
+                    newFilledMatrix[rowNewFilled][col] =  this.filledMatrix[row][col];
+                }
+                rowNewFilled--;
+            }
+            
+        }
+        this.score += 15**rowsCleared;
+        this.filledMatrix = newFilledMatrix;
+    }
+
     newBlock() {
-        this.fallingBlock = new FallingBlock(0, 0, TetrisBlockManager.getRandomBlockMatrix());
+        const blockMatrix = TetrisBlockManager.getRandomBlockMatrix()
+        const sx = (this.width /  2 | 0) - (blockMatrix.matrix[0].length / 2 | 0);
+        const sy = 0;
+        this.fallingBlock = new FallingBlock(sx, sy, blockMatrix);
         if (!IsFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
             this.state = ARENA_STATE.ENDSCREEN;
         }
@@ -278,15 +306,14 @@ export class TetrisShell {
         labels[ARENA_STATE.ENDSCREEN] = 'endscreen';
         labels[ARENA_STATE.PAUSED] = 'paused';
         labels[ARENA_STATE.RUNNING] = 'running';
-
-        drawRect(context, 0, 0, width + 300, height, rgba(255, 100, 200));
-
+        
         const renderArena = (deltaTime) => {
+            drawRect(context, 0, 0, width + 300, height, rgba(255, 100, 200));
             drawRect(context, offsetLeft + 0, 0, width, height, rgba(0, 0, 0));
             drawFilled(context, arena.arenaMatrix, offsetLeft + 0, 0, blockSize, arena.colorMap);
-            drawMonospaceText(context, 20, offsetLeft + 10, 20, `score: ${arena.score}`, rgba(255, 100, 200));
+            drawMonospaceText(context, 18, 5, 20, `score: ${arena.score}`, 'white');
             if (this.debugInfoOn) {
-                drawMonospaceText(context, 20, offsetLeft + 10, 40, `state: ${labels[arena.state]}`, rgba(255, 100, 200));
+                drawMonospaceText(context, 18, 5, 40, `state: ${labels[arena.state]}`, 'white');
             }
         }
 
