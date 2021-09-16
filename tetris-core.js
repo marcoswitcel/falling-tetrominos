@@ -263,10 +263,15 @@ export class TetrisShell {
     setup() {
         const { width, height, blockSize } = this.config;
 
-        const canvas = createCanvas(width, height, document.body);
+        const canvas = createCanvas(width + 300, height, document.body);
+        // Temporário
+        // canvas.style.width = '60vw';
+        canvas.style.margin = 'auto';
+        canvas.style.display = 'block';
         const context = canvas.getContext('2d');
+        const offsetLeft = 150;
         
-        const arena = new TetrisArena(10 , 20);
+        const arena = new TetrisArena(this.config.arena.x, this.config.arena.y);
         this.arena = arena;
 
         const labels = [];
@@ -274,12 +279,14 @@ export class TetrisShell {
         labels[ARENA_STATE.PAUSED] = 'paused';
         labels[ARENA_STATE.RUNNING] = 'running';
 
+        drawRect(context, 0, 0, width + 300, height, rgba(255, 100, 200));
+
         const renderArena = (deltaTime) => {
-            drawRect(context, 0, 0, width, height, rgba(0, 0, 0));
-            drawFilled(context, arena.arenaMatrix, 0, 0, blockSize, arena.colorMap);
-            drawMonospaceText(context, 20, 10, 20, `score: ${arena.score}`, rgba(255, 100, 200));
+            drawRect(context, offsetLeft + 0, 0, width, height, rgba(0, 0, 0));
+            drawFilled(context, arena.arenaMatrix, offsetLeft + 0, 0, blockSize, arena.colorMap);
+            drawMonospaceText(context, 20, offsetLeft + 10, 20, `score: ${arena.score}`, rgba(255, 100, 200));
             if (this.debugInfoOn) {
-                drawMonospaceText(context, 20, 10, 40, `state: ${labels[arena.state]}`, rgba(255, 100, 200));
+                drawMonospaceText(context, 20, offsetLeft + 10, 40, `state: ${labels[arena.state]}`, rgba(255, 100, 200));
             }
         }
 
