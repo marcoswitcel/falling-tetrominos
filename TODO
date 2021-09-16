@@ -1,0 +1,13 @@
+# Pendente
+
+## Core gameplay
+* sistema de limpeza de área completadas
+* sistema de pontuação
+## UI e configuração do jogo
+* sistema que permita montar telas com botões e ações
+* sistema pra gerenciar as telas
+* menu com botão e talvez botão pra tela de configuração
+* tela de configuração
+## Bugs
+* rotação incorreta dos blocos
+* sobrepondo blocos quando o jogo termina

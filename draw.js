@@ -9,10 +9,26 @@
  * @param {number} height 
  * @param {import('./colors.js').RGBA | string} color 
  */
-export function draw(ctx, sx, sy, width, height, color) {
+export function drawRect(ctx, sx, sy, width, height, color) {
     //@ts-expect-error
     ctx.fillStyle = color;
     ctx.fillRect(sx, sy, width, height);
+}
+
+/**
+ * 
+ * @param {CanvasRenderingContext2D} ctx 
+ * @param {number} size 
+ * @param {number} sx 
+ * @param {number} sy 
+ * @param {string} text 
+ * @param {import('./colors.js').RGBA | string} color 
+ */
+export function drawMonospaceText(ctx, size, sx, sy, text, color) {
+    ctx.font = `${size}px monospace`;
+    //@ts-expect-error
+    ctx.fillStyle = color;
+    ctx.fillText(text, sx, sy);
 }
 
 /**

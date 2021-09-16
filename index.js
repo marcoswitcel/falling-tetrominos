@@ -7,7 +7,7 @@ import { StorageUtility } from './storage.js';
 main: {
     const storage = new StorageUtility('tetris-config');
     let config = (AppConfig.devMode) ? ArenaConfig : storage.getItemWithInialization('config', ArenaConfig);
-    const tetrisShell = new TetrisShell(config);
+    const tetrisShell = new TetrisShell(config, AppConfig.debugInfoOn);
     
     tetrisShell.setup();
     

@@ -17,6 +17,7 @@ ArenaConfig.height = ArenaConfig.arena.y * ArenaConfig.blockSize;
 
 export const AppConfig = {
     devMode: true,
+    debugInfoOn: true,
 }
 
 export default {

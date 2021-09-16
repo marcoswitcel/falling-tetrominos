@@ -2,7 +2,7 @@
 
 import { rgba } from './colors.js';
 import { createCanvas, createMatrix } from './util.js';
-import { draw, drawFilled } from './draw.js';
+import { drawRect, drawFilled, drawMonospaceText } from './draw.js';
 
 export class TetrisBlockManager {
 
@@ -170,6 +170,7 @@ export class TetrisArena {
         this.fallingBlock = new FallingBlock(0, 0, TetrisBlockManager.getRandomBlockMatrix());
         this.filledMatrix = createMatrix(width, height); 
         this.arenaMatrix = createMatrix(width, height);
+        this.score = 0;
 
         this.cumulatedTime = 0;
         this.update = (deltatime) => {
@@ -220,6 +221,9 @@ export class TetrisArena {
 
     newBlock() {
         this.fallingBlock = new FallingBlock(0, 0, TetrisBlockManager.getRandomBlockMatrix());
+        if (!IsFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
+            this.state = ARENA_STATE.ENDSCREEN;
+        }
     }
 
     get colorMap() {
@@ -238,7 +242,8 @@ export class TetrisArena {
 
 export class TetrisShell {
 
-    constructor(config) {
+    constructor(config, debugInfoOn = false) {
+        this.debugInfoOn = debugInfoOn;
         this.config = config;
     }
 
@@ -264,9 +269,18 @@ export class TetrisShell {
         const arena = new TetrisArena(10 , 20);
         this.arena = arena;
 
-        function renderArena(deltaTime) {
-            draw(context, 0, 0, width, height, rgba(0, 0, 0));
+        const labels = [];
+        labels[ARENA_STATE.ENDSCREEN] = 'endscreen';
+        labels[ARENA_STATE.PAUSED] = 'paused';
+        labels[ARENA_STATE.RUNNING] = 'running';
+
+        const renderArena = (deltaTime) => {
+            drawRect(context, 0, 0, width, height, rgba(0, 0, 0));
             drawFilled(context, arena.arenaMatrix, 0, 0, blockSize, arena.colorMap);
+            drawMonospaceText(context, 20, 10, 20, `score: ${arena.score}`, rgba(255, 100, 200));
+            if (this.debugInfoOn) {
+                drawMonospaceText(context, 20, 10, 40, `state: ${labels[arena.state]}`, rgba(255, 100, 200));
+            }
         }
 
         this.pipeline = [ arena.update, renderArena ];
