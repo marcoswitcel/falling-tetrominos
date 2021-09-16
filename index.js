@@ -1,10 +1,13 @@
 //@ts-check
-import Config from './config.js';
+import { AppConfig, ArenaConfig } from './config.js';
 import { Ticker } from './ticker.js';
 import { TetrisShell } from './tetris-core.js';
+import { StorageUtility } from './storage.js';
 
 main: {
-    const tetrisShell = new TetrisShell(Config);
+    const storage = new StorageUtility('tetris-config');
+    let config = (AppConfig.devMode) ? ArenaConfig : storage.getItemWithInialization('config', ArenaConfig);
+    const tetrisShell = new TetrisShell(config);
     
     tetrisShell.setup();
     

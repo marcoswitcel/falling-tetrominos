@@ -7,7 +7,7 @@ import { draw, drawFilled } from './draw.js';
 export class TetrisBlockManager {
 
     static getRandomBlockMatrix() {
-        const blocks = 'TL';
+        const blocks = [ 'T', 'L', 'I', 'B', 'J', 'Z', 'ZI' ];
         return JSON.parse(
             JSON.stringify(
                 this[blocks[blocks.length * Math.random() | 0]]
@@ -23,6 +23,7 @@ export class TetrisBlockManager {
             [ 0, 1, 0 ],
         ],
     };
+
     static L = {
         code: 2,
         matrix: [
@@ -30,6 +31,49 @@ export class TetrisBlockManager {
             [ 0, 2, 0, 0 ],
             [ 0, 2, 0, 0 ],
             [ 0, 2, 2, 0 ],
+        ],
+    };
+
+
+    static I = {
+        code: 3,
+        matrix: [
+            [ 0, 3, 0 ],
+            [ 0, 3, 0 ],
+            [ 0, 3, 0 ],
+        ],
+    };
+
+    static B = {
+        code: 4,
+        matrix: [
+            [ 4, 4 ],
+            [ 4, 4 ],
+        ],
+    };
+
+    static J = {
+        code: 5,
+        matrix: [
+            [ 0, 5 ],
+            [ 0, 5 ],
+            [ 5, 5 ],
+        ],
+    };
+
+    static Z = {
+        code: 6,
+        matrix: [
+            [ 6, 6, 0 ],
+            [ 0, 6, 6 ],
+        ],
+    };
+
+    static ZI = {
+        code: 7,
+        matrix: [
+            [ 0, 7, 7 ],
+            [ 7, 7, 0 ],
         ],
     };
 }
@@ -103,6 +147,21 @@ function IsFallingBlockInFreeSpace(arena, block, width, height) {
     return true;
 }
 
+function rotateMatrix(matrix, dir) {
+    const height = matrix.length;
+    const width = matrix[0].length;
+
+    const rotatedMatrix = createMatrix(height, width);
+
+    for (let row = rotatedMatrix.length; row--;) {
+        for (let col = rotatedMatrix[row].length; col--;) {
+            rotatedMatrix[row][col] = matrix[(dir === -1) ? height - 1 - col : col][(dir === -1) ? row : width - 1 - row];
+        }
+    }
+
+    return rotatedMatrix;
+}
+
 export class TetrisArena {
     constructor(width, height) {
         this.width = width;
@@ -116,12 +175,23 @@ export class TetrisArena {
         this.update = (deltatime) => {
             this.cumulatedTime += deltatime;
 
+            if (this.state !== ARENA_STATE.RUNNING) return;
+
             if (this.cumulatedTime > 1000) {
                 this.blockFall();
 
             } else {
                 this.arenaMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
             }
+        }
+    }
+
+    tryRotate(dir) {
+        const oldMatrix = this.fallingBlock.matrix;
+        this.fallingBlock.matrix = rotateMatrix(oldMatrix, dir);
+
+        if (!IsFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
+            this.fallingBlock.matrix = oldMatrix;
         }
     }
 
@@ -157,6 +227,11 @@ export class TetrisArena {
             null,
             rgba(255, 0, 0),
             rgba(0, 255, 0),
+            rgba(0, 0, 255),
+            rgba(0, 255, 255),
+            rgba(255, 0, 255),
+            rgba(255, 255, 0),
+            rgba(255, 255, 255),
         ];
     }
 }
@@ -201,6 +276,21 @@ export class TetrisShell {
 
     listen() {
         window.addEventListener('keydown', (event) => {
+
+            if (event.key === 'p') {
+                this.arena.state = (this.arena.state === ARENA_STATE.RUNNING) ? ARENA_STATE.PAUSED : ARENA_STATE.RUNNING;
+            }
+
+            if (this.arena.state !== ARENA_STATE.RUNNING) return;
+
+            if (event.key === 'q') {
+                this.arena.tryRotate(-1);
+            }
+
+            if (event.key === 'e') {
+                this.arena.tryRotate(1);
+            }
+
             // <--
             if (event.keyCode === 37) {
                 this.arena.tryMove(-1);

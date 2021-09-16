@@ -1,6 +1,6 @@
 //@ts-check
 
-const Config = {
+export const ArenaConfig = {
     /** @type {number} */
     width: null, // Computado abaixo (arena.x * blockSize)
     /** @type {number} */
@@ -12,8 +12,14 @@ const Config = {
     blockSize: 30
 }
 
-Config.width = Config.arena.x * Config.blockSize;
-Config.height = Config.arena.y * Config.blockSize;
+ArenaConfig.width = ArenaConfig.arena.x * ArenaConfig.blockSize;
+ArenaConfig.height = ArenaConfig.arena.y * ArenaConfig.blockSize;
 
+export const AppConfig = {
+    devMode: true,
+}
 
-export default Config;
+export default {
+    ArenaConfig,
+    AppConfig
+};
