@@ -273,6 +273,8 @@ export class TetrisShell {
     constructor(config, debugInfoOn = false) {
         this.debugInfoOn = debugInfoOn;
         this.config = config;
+        /** @type {HTMLCanvasElement} */
+        this.canvas = null;
     }
 
     [Symbol.iterator] () {
@@ -292,6 +294,8 @@ export class TetrisShell {
         const { width, height, blockSize } = this.config;
 
         const canvas = createCanvas(width + 300, height, document.body);
+        this.canvas = canvas;
+        
         // Temporário
         // canvas.style.width = '60vw';
         canvas.style.margin = 'auto';
