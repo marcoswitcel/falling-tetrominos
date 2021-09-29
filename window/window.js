@@ -1,6 +1,7 @@
 //@ts-check
 
-import { rgba } from './colors.js';
+import { rgba } from '../colors.js';
+import { Event, EventTarget } from './event-target.js';
 
 export class Node {
     /**
@@ -135,6 +136,35 @@ export class Element {
     }
 }
 
+export class ElementEvent extends Event {
+    /**
+     * @param {string} type 
+     * @param {Object} param1
+     * @param {boolean} [param1.bubbles]
+     * @param {NodeElement} param1.target
+     * @param {NodeElement} param1.currentTarget
+     * @param {boolean} [param1.defaultPrevented]
+     * @param {boolean} [param1.cancelable]
+     * @param {any} [param1.data]
+     */
+    constructor(type, { bubbles = true, target, currentTarget, defaultPrevented = false, cancelable = true, data = null }) {
+        super(type, data);
+
+        /** @type {boolean} */
+        this.bubbles = bubbles;
+        /** @type {NodeElement} */
+        this.target = target;
+        /** @type {NodeElement} */
+        this.currentTarget = currentTarget;
+        /** @type {Boolean} */
+        this.defaultPrevented = defaultPrevented;
+        /** @type {Boolean} */
+        this.cancelable = cancelable;
+        /** @type {any} */
+        this.data = data;
+    }
+}
+
 export class NodeElement {
     /**
      * @param {Object} param0
@@ -155,8 +185,75 @@ export class NodeElement {
         this.style = new Style(style);
         /** @type {object} */
         this.data = data;
+        /** @type {EventTarget} */
+        this.eventTarget = new EventTarget;
 
         this.setParentOfChildren();
+    }
+
+    /**
+     * 
+     * @param {string} type 
+     * @param {(any) => void} handler
+     * @returns {void}
+     */
+    addListener(type, handler) {
+        this.eventTarget.addListener(type, handler);
+    }
+
+    /**
+     * 
+     * @param {string} type 
+     * @param {(any) => void} handler
+     * @returns {void}
+     */
+    removeListener(type, handler) {
+        this.eventTarget.removeListener(type, handler);
+    }
+
+    /**
+     * 
+     * @param {'click'} eventType 
+     * @param {any} data 
+     * @returns {void}
+     */
+    dispatchEvent(eventType, data = null) {
+        const event = new ElementEvent(eventType, {
+            currentTarget: this,
+            target: this,
+            data: data
+        });
+
+        // Executa todo os handlers do elemento
+        this.eventTarget.dispatchEvent(event);
+
+        this.defaultHandler(event);
+    }
+
+    /**
+     * 
+     * @param {ElementEvent} event 
+     * @returns {void}
+     */
+    bubbleEvent(event) {
+        // Atualiza o currentTarget
+        event.currentTarget = this;
+
+        // Executa todo os handlers do elemento
+        this.eventTarget.dispatchEvent(event);
+
+        this.defaultHandler(event);
+    }
+
+    /**
+     * 
+     * @param {ElementEvent} event 
+     * @returns {void}
+     */
+    defaultHandler(event) {
+        if (event.bubbles && this.parent && !event.defaultPrevented) {
+            this.parent.bubbleEvent(event);
+        }
     }
 
     /**
