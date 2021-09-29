@@ -3,7 +3,6 @@ import { AppConfig, ArenaConfig } from './config.js';
 import { Ticker } from './ticker.js';
 import { TetrisShell } from './tetris-core.js';
 import { StorageUtility } from './storage.js';
-import { runTest } from './test.js';
 
 main: {
     const storage = new StorageUtility('tetris-config');
@@ -13,7 +12,4 @@ main: {
     tetrisShell.setup();
     
     new Ticker(tetrisShell).start();
-
-    // Testes de UI
-    // runTest(tetrisShell);
 }
