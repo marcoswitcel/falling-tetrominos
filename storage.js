@@ -1,11 +1,21 @@
 //@ts-check
 
+const singleton = Symbol();
+
+/**
+ * Classe utilitária criada para permitir a mais fácil manipulação das instâncias de `Storage`
+ */
 export class StorageUtility {
 
     /**
      * @type {StorageUtility}
      */
-    static singleton = null
+    static get singleton() {
+        if (!this[singleton]) {
+            this[singleton] = new StorageUtility;
+        }
+        return this[singleton];
+    }
 
     /**
      * @type {string}
@@ -48,10 +58,18 @@ export class StorageUtility {
      * @property {number} length
      */
     get length() {
+        /** @TODO terminar de implementar ou remover */
         return 0;
     }
 
+    /**
+     * Retorna a chave prefixada
+     * 
+     * @param {string} key 
+     * @returns {string}
+     */
     prefixedKey(key) {
+        /** @TODO analisar com calma as possibilidades de conflito de chave */
         return this._prefix ? `${this._prefix}:#:${key}` : key;
     }
 
