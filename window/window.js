@@ -97,8 +97,10 @@ export function viewHeight(number) {
 }
 
 export class Style {
-    constructor({ margin = [0], padding = [0], size = 16, wrap = true, width = percentage(100), height = 'auto', visibility = true, color = rgba(0, 0, 0, 0.1) } = {}) {
+    constructor({ display = 'block', margin = [0], padding = [0], size = 16, wrap = true, width = percentage(100), height = 'auto', visibility = true, color = rgba(0, 0, 0, 0) } = {}) {
+        /** @type {PositionalValues} */
         this.margin =  new PositionalValues(margin),
+        /** @type {PositionalValues} */
         this.padding = new PositionalValues(padding),
         this.width = width;
         /** @type {string|Percentage|ViewWidth|ViewHeight} */
@@ -107,6 +109,8 @@ export class Style {
         this.color = color;
         this.size = size;
         this.wrap = wrap;
+        /** @type {'block'|'none'} *///@ts-expect-error
+        this.display = display;
     }
 }
 
@@ -189,6 +193,23 @@ export class NodeElement {
         this.eventTarget = new EventTarget;
 
         this.setParentOfChildren();
+    }
+
+    /**
+     * 
+     * @param {NodeElement} element 
+     */
+    appendChild(element) {
+        // Um elemento não pode ter a si mesmo como filho
+        if (element === this) return;
+
+        // Se o elemento já era filho de alguém, remove o elemento
+        // da antiga lista e o adiciona para a nova lista de filhos e o novo `parent`
+        if (element.parent) {
+            element.parent.children.delete(element);
+        }
+        element.parent = this;
+        this.children.add(element);
     }
 
     /**
@@ -303,7 +324,7 @@ export class NodeElement {
                 /** @type {{ value: string, preprocessedText: string[] }} */
                 const data = this.data;
                 if (!data.preprocessedText) {
-                    data.preprocessedText = data.value.split('\n');
+                    data.preprocessedText = (`${data.value}`).split('\n');
                 }
                 const letterPerLine = this.parent.width / this.style.size | 0;
                 let lines = 0;

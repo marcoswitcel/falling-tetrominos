@@ -3,11 +3,18 @@
 ## Core gameplay
 * sistema de limpeza de área completadas -- ok
 * sistema de pontuação -- ok
+
 ## UI e configuração do jogo
-* sistema que permita montar telas com botões e ações
-* sistema pra gerenciar as telas
-* menu com botão e talvez botão pra tela de configuração
+* sistema que permita montar telas com botões e ações -- ok
+* sistema pra gerenciar as telas (display none block)
+* montar uma tela para testar todas as funcionalidades do sistema de telas
+* sistema de margin em porcentagem? ou margim auto?
+* sistema de hover a transition
+
+## Telas e ações a adicionar
+* menu com botão de play, logo do jogo e talvez botão pra tela de configuração
 * tela de configuração
+
 ## Bugs
 * rotação incorreta dos blocos
 * sobrepondo blocos quando o jogo termina (ocorre mas de forma mais sutil agora)
