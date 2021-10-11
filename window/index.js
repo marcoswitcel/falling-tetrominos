@@ -83,6 +83,7 @@ function runTest() {
         storage.setItem('count', count);
         menuIDs.addButtonText.data.value.count =  count;
         menuIDs.addButtonText.data.preprocessedText = null;
+        console.log(event);
     });
 
     configIDs.button.addListener('click', (event) => {
@@ -91,16 +92,23 @@ function runTest() {
         console.log('configIDs');
     });
 
+    root.addListener('click', (event) => {
+        const { x, y } = event.data;
+        text.data.value = `\nmouse clicked at x: ${x} y: ${y}\n`;
+        text.data.preprocessedText = null;
+    })
 
+
+    /**
+     * Esses são os eventos nativos que são usados para coletar input e dispara os eventos customizados
+     */
     canvas.addEventListener('click', (event) => {
         const { offsetX : x, offsetY : y  } = event;
-        text.data.value = `x: ${x}\n y: ${y}`;
-        text.data.preprocessedText = null;
 
         const clickedElement = checkClickHit(root, x, y);
 
         if (clickedElement) {
-            clickedElement.dispatchEvent('click', { x: 1, y: 1});
+            clickedElement.dispatchEvent('click', { x, y });
         }
     });
 }
