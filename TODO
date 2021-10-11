@@ -9,7 +9,7 @@
 
 * sistema que permita montar telas com botões e ações -- ok
 * sistema pra gerenciar as telas (display none block) -- ok
-* sistema de mousein mouseout para funcionar em conjunto com transições
+* sistema de mousein mouseout para funcionar em conjunto com transições -- ok
 * montar uma tela para testar todas as funcionalidades do sistema de telas -- parcialmente
 * sistema de margin em porcentagem? ou margim auto?
 * sistema de hover a transition

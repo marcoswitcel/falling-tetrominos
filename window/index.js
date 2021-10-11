@@ -93,7 +93,20 @@ function runTest() {
         const { x, y } = event.data;
         text.data.value = `\nmouse clicked at x: ${x} y: ${y}\n`;
         text.data.preprocessedText = null;
-    })
+    });
+
+    menuIDs.mouseInOutdButton.addListener('mousein', (event) => {
+        menuIDs.mouseInOutText.data.value.mouseIn = true;
+        menuIDs.mouseInOutText.data.preprocessedText = null;
+        console.log(event);
+    });
+
+    menuIDs.mouseInOutdButton.addListener('mouseout', (event) => {
+        menuIDs.mouseInOutText.data.value.mouseIn = false;
+        menuIDs.mouseInOutText.data.value.mouseOut = true;
+        menuIDs.mouseInOutText.data.preprocessedText = null;
+        console.log(event);
+    });
 
 
     /**
@@ -108,6 +121,28 @@ function runTest() {
             clickedElement.dispatchEvent('click', { x, y });
         }
     });
+
+    /**
+     * @todo refatorar para um objeto que gerencie os estados dos listeners
+     * @todo por hora ele considera mouseout mesmo quando o novo elemento em com mousein for filho do antigo, ajustar
+     */
+    state: {
+        let mouseInsideOf = null;
+        canvas.addEventListener('mousemove', (event) => {
+            const { offsetX : x, offsetY : y  } = event;
+    
+            const newMouseInside = checkClickHit(root, x, y);
+    
+            if (mouseInsideOf && mouseInsideOf !== newMouseInside) {
+                mouseInsideOf.dispatchEvent('mouseout', { x, y });
+            }
+
+            if (newMouseInside !== mouseInsideOf) {
+                mouseInsideOf = newMouseInside;
+                newMouseInside.dispatchEvent('mousein', { x, y });
+            }
+        });
+    }
 }
 
 /**

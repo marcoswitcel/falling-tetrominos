@@ -36,6 +36,22 @@ export default new NodeElement({
                 }
             }),
         ]}),
+        menuIDs.mouseInOutdButton = new NodeElement({ type: 'button', style: { width: percentage(50), height: 'auto', margin: [ 10, 0, 0 ], padding: [ 15 ], color: rgba(0, 0, 255) }, children: [
+            menuIDs.mouseInOutText = new NodeElement({
+                type: 'text',
+                style: { size: 16, height: 'auto' },
+                data: {
+                    value:  {
+                        mouseIn: false,
+                        mouseOut: false,
+                        toString() {
+                            return (this.mouseIn) ? 'The mouse is inside of this box' :
+                                (this.mouseOut) ? 'The mouse was inside of this box' : 'Waiting mouse hover';
+                        }
+                    }
+                }
+            }),
+        ]}),
         menuIDs.text = new NodeElement({
             type: 'text',
             style: { size: 16, height: 'auto' },

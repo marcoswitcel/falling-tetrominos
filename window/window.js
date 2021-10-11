@@ -234,7 +234,7 @@ export class NodeElement {
 
     /**
      * 
-     * @param {'click'} eventType 
+     * @param {'click'|'mousein'|'mouseout'} eventType 
      * @param {any} data 
      * @returns {void}
      */
