@@ -73,7 +73,6 @@ function runTest() {
     menuIDs.button.addListener('click', (event) => {
         viewMenu.style.display = 'none';
         viewConfig.style.display = 'block';
-        console.log('menuIDs');
     });
 
     menuIDs.addButton.addListener('click', (event) => {
@@ -83,13 +82,11 @@ function runTest() {
         storage.setItem('count', count);
         menuIDs.addButtonText.data.value.count =  count;
         menuIDs.addButtonText.data.preprocessedText = null;
-        console.log(event);
     });
 
     configIDs.button.addListener('click', (event) => {
         viewConfig.style.display = 'none';
         viewMenu.style.display = 'block';
-        console.log('configIDs');
     });
 
     root.addListener('click', (event) => {
