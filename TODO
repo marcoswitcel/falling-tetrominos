@@ -9,10 +9,13 @@
 
 * sistema que permita montar telas com botões e ações -- ok
 * sistema pra gerenciar as telas (display none block) -- ok
-* sistema de mousein mouseout para funcionar em conjunto com transições -- ok
+* sistema de mousein mouseout para funcionar em conjunto com transições -- parcialmente, ainda preciso ajustar a propagação
 * montar uma tela para testar todas as funcionalidades do sistema de telas -- parcialmente
 * sistema de margin em porcentagem? ou margim auto?
 * sistema de hover a transition
+* sistema que permita a execução de músicas de fundo
+* testes para ajudar a documentar os componentes de layout, sistema de eventos?
+* sistema que permita o mix de classes para facilitar a reutilização de funcionalidades como eventTarget?
 
 ## Telas e ações a adicionar
 

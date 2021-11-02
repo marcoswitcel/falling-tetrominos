@@ -123,8 +123,13 @@ function runTest() {
     });
 
     /**
-     * @todo refatorar para um objeto que gerencie os estados dos listeners
-     * @todo por hora ele considera mouseout mesmo quando o novo elemento em com mousein for filho do antigo, ajustar
+     * @todo Refatorar para um objeto que gerencie os estados dos listeners.
+     * @todo Por hora ele considera mouseout mesmo quando o novo elemento em com mousein for filho do antigo. Pensando
+     * em adicionar uma propriedade `path` ao `ElementEvent` que quando presente permitirá ao método `defaultHandler`
+     * saber para onde propagar os eventos, já que com o `mousein` me parece o ideal o evento vir da `raiz` para o elemento
+     * folha. Isso vai gerar a necessidade de criar um `path` de propagação dos eventos de `mousein` e `mouseout` antes de fazer
+     * o dispatch, inicialmente me parece que apenas `mousein` e `mouseout` vão precisar deste recurso.
+     * 
      */
     state: {
         let mouseInsideOf = null;
