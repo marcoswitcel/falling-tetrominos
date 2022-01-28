@@ -1,4 +1,3 @@
-//@ts-check
 
 /**
  * @param {number} r Entre 0 e 255 (integer)

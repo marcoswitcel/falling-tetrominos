@@ -1,16 +1,15 @@
-//@ts-check
 
 /**
- * 
  * @param {number} width 
  * @param {number} height 
  * @param {HTMLElement} appendTo 
- * @returns 
+ * @returns {HTMLCanvasElement}
  */
 export function createCanvas(width, height, appendTo = null) {
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
+    
     if (appendTo) {
         appendTo.appendChild(canvas);
     }

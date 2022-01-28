@@ -1,4 +1,3 @@
-//@ts-check
 
 export const ArenaConfig = {
     /** @type {number} */
@@ -23,4 +22,4 @@ export const AppConfig = {
 export default {
     ArenaConfig,
     AppConfig
-};
+}

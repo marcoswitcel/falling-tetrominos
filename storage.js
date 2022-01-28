@@ -1,4 +1,3 @@
-//@ts-check
 
 const singleton = Symbol();
 
@@ -121,6 +120,4 @@ export class StorageUtility {
 
         return this._jsonEncode ? JSON.parse(value) : value;
     }
-
-
 }

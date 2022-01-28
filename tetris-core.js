@@ -1,4 +1,3 @@
-//@ts-check
 
 import { rgba } from './colors.js';
 import { createCanvas, createMatrix } from './util.js';

@@ -1,4 +1,3 @@
-//@ts-check
 import { AppConfig, ArenaConfig } from './config.js';
 import { Ticker } from './ticker.js';
 import { TetrisShell } from './tetris-core.js';
