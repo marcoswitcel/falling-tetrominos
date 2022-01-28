@@ -1,5 +1,3 @@
-//@ts-check
-
 import { rgba } from '../colors.js';
 import { Event, EventTarget } from './event-target.js';
 

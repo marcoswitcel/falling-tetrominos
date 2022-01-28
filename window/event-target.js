@@ -1,4 +1,3 @@
-//@ts-check
 
 export class Event {
     /**
@@ -58,7 +57,6 @@ export class EventTarget {
         }
     }
 }
-
 
 export default {
     Event,

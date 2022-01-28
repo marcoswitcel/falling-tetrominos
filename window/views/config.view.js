@@ -1,5 +1,3 @@
-//@ts-check
-
 import { rgba } from '../../colors.js';
 import { NodeElement, percentage } from '../window.js';
 
@@ -21,4 +19,4 @@ export default new NodeElement({
             }),
         ]}),
     ]
-})
+});

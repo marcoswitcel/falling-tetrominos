@@ -1,10 +1,6 @@
-//@ts-check
-
-import { Element, Node, NodeElement, nodeSet, percentage } from './window.js';
+import { NodeElement } from './window.js';
 import { rgba } from '../colors.js';
-import { drawRect, drawFilled, drawMonospaceText } from '../draw.js';
-import { Event, EventTarget } from './event-target.js';
-// import { ArenaConfig } from '../config.js';
+import { drawRect, drawMonospaceText } from '../draw.js';
 import { createCanvas } from '../util.js';
 import viewMenu, { menuIDs }  from './views/menu.view.js';
 import viewConfig, { configIDs }  from './views/config.view.js';
@@ -223,6 +219,5 @@ function checkClickHit(rootNode, x, y, offset = [0, 0]) {
 
     return null;
 }
-
 
 runTest();
