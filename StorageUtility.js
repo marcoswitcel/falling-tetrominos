@@ -7,6 +7,7 @@ const singleton = Symbol();
 export default class StorageUtility {
 
     /**
+     * @TODO João, criar uma factory para esse tipo de funcionalidade
      * @constant
      * @readonly
      * @type {StorageUtility}
@@ -55,12 +56,19 @@ export default class StorageUtility {
     }
 
     /**
+     * Retorna o número de pares de chave e valor
      * @readonly
      * @property {number} length
      */
     get length() {
-        /** @TODO terminar de implementar ou remover */
-        return 0;
+        let keyCount = 0;
+        const prefixPattern = this._prefixedKey('');
+
+        for (const key in this._storage) {
+            keyCount += +(key.startsWith(prefixPattern));
+        }
+
+        return keyCount;
     }
 
     /**
@@ -99,11 +107,25 @@ export default class StorageUtility {
      * Persiste um valor associado a uma chave no armazenamento escolhido
      * @param {string} key chave
      * @param {any} value valor
+     * @return {void}
      */
     setItem(key, value) {
         key = this._prefixedKey(key);
         value = this._jsonEncode ? JSON.stringify(value) : value;
         this._storage.setItem(key, value);
+    }
+
+    /**
+     * @returns {void}
+     */
+    clear() {
+        const prefixPattern = this._prefixedKey('');
+
+        for (const key in this._storage) {
+            if (key.startsWith(prefixPattern)) {
+                this._storage.removeItem(key);
+            }
+        }
     }
 
     /**
