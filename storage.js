@@ -7,6 +7,8 @@ const singleton = Symbol();
 export class StorageUtility {
 
     /**
+     * @constant
+     * @readonly
      * @type {StorageUtility}
      */
     static get singleton() {
@@ -67,7 +69,7 @@ export class StorageUtility {
      * @param {string} key 
      * @returns {string}
      */
-    prefixedKey(key) {
+    _prefixedKey(key) {
         /** @TODO analisar com calma as possibilidades de conflito de chave */
         return this._prefix ? `${this._prefix}:#:${key}` : key;
     }
@@ -78,27 +80,28 @@ export class StorageUtility {
      * @returns {string|Object|null}
      */
     getItem(key) {
-        key = this.prefixedKey(key);
+        key = this._prefixedKey(key);
         const value = this._storage.getItem(key);
 
         return this._jsonEncode ? JSON.parse(value) : value;
     }
     
     /**
-     * @param {string} key 
+     * @param {string} key
+     * @return {void}
      */
     removeItem(key) {
-        key = this.prefixedKey(key);
+        key = this._prefixedKey(key);
         this._storage.removeItem(key);
     }
     
     /**
-     * 
-     * @param {string} key 
-     * @param {any} value 
+     * Persiste um valor associado a uma chave no armazenamento escolhido
+     * @param {string} key chave
+     * @param {any} value valor
      */
     setItem(key, value) {
-        key = this.prefixedKey(key);
+        key = this._prefixedKey(key);
         value = this._jsonEncode ? JSON.stringify(value) : value;
         this._storage.setItem(key, value);
     }
@@ -109,7 +112,7 @@ export class StorageUtility {
      * @returns {string|Object|null}
      */
     getItemWithInialization(key, defaultValue) {
-        const prefixedKey = this.prefixedKey(key);
+        const prefixedKey = this._prefixedKey(key);
         let value = this._storage.getItem(prefixedKey);
 
         if (value === null) {
