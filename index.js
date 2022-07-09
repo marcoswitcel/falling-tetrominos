@@ -1,7 +1,7 @@
 import { AppConfig, ArenaConfig } from './config.js';
 import { Ticker } from './ticker.js';
 import { TetrisShell } from './tetris-core.js';
-import { StorageUtility } from './storage.js';
+import StorageUtility from './StorageUtility.js';
 
 main: {
     const storage = new StorageUtility('tetris-config');

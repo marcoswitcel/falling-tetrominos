@@ -4,7 +4,7 @@ const singleton = Symbol();
 /**
  * Classe utilitária criada para permitir a mais fácil manipulação das instâncias de `Storage`
  */
-export class StorageUtility {
+export default class StorageUtility {
 
     /**
      * @constant

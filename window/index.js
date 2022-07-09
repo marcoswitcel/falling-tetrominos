@@ -4,7 +4,7 @@ import { drawRect, drawMonospaceText } from '../draw.js';
 import { createCanvas } from '../util.js';
 import viewMenu, { menuIDs }  from './views/menu.view.js';
 import viewConfig, { configIDs }  from './views/config.view.js';
-import { StorageUtility } from '../storage.js';
+import StorageUtility from '../StorageUtility.js';
 
 function runTest() {
     
