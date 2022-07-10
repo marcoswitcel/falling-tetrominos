@@ -1,7 +1,7 @@
 
 import { rgba } from './colors.js';
 import { createCanvas, createMatrix } from './util.js';
-import { drawRect, drawFilled, drawMonospaceText } from './draw.js';
+import { drawRect, drawFilledMatrix, drawMonospaceText } from './draw.js';
 
 export class TetrisBlockManager {
 
@@ -78,8 +78,11 @@ export class TetrisBlockManager {
 }
 
 class ARENA_STATE {
+    /** @readonly Jogo rodando */
     static RUNNING = 0;
+    /** @readonly Jogo pausado */
     static PAUSED = 1;
+    /** @readonly Tela de fim de jogo */
     static ENDSCREEN = 2;
 }
 
@@ -313,7 +316,7 @@ export class TetrisShell {
         const renderArena = (deltaTime) => {
             drawRect(context, 0, 0, width + 300, height, rgba(255, 100, 200));
             drawRect(context, offsetLeft + 0, 0, width, height, rgba(0, 0, 0));
-            drawFilled(context, arena.arenaMatrix, offsetLeft + 0, 0, blockSize, arena.colorMap);
+            drawFilledMatrix(context, arena.arenaMatrix, offsetLeft + 0, 0, blockSize, arena.colorMap);
             drawMonospaceText(context, 18, 5, 20, `score: ${arena.score}`, 'white');
             if (this.debugInfoOn) {
                 drawMonospaceText(context, 18, 5, 40, `state: ${labels[arena.state]}`, 'white');

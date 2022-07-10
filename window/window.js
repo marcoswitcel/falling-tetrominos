@@ -67,7 +67,7 @@ class PositionalValues {
 
 /**
  * @param  {...any} args 
- * @returns {Set<Node>}
+ * @return {Set<Node>}
  */
 export function nodeSet(...args) {
     return new Set(
@@ -214,7 +214,7 @@ export class NodeElement {
      * 
      * @param {string} type 
      * @param {(any) => void} handler
-     * @returns {void}
+     * @return {void}
      */
     addListener(type, handler) {
         this.eventTarget.addListener(type, handler);
@@ -224,7 +224,7 @@ export class NodeElement {
      * 
      * @param {string} type 
      * @param {(any) => void} handler
-     * @returns {void}
+     * @return {void}
      */
     removeListener(type, handler) {
         this.eventTarget.removeListener(type, handler);
@@ -234,7 +234,7 @@ export class NodeElement {
      * 
      * @param {'click'|'mousein'|'mouseout'} eventType 
      * @param {any} data 
-     * @returns {void}
+     * @return {void}
      */
     dispatchEvent(eventType, data = null) {
         const event = new ElementEvent(eventType, {
@@ -252,7 +252,7 @@ export class NodeElement {
     /**
      * 
      * @param {ElementEvent} event 
-     * @returns {void}
+     * @return {void}
      */
     bubbleEvent(event) {
         // Atualiza o currentTarget
@@ -267,7 +267,7 @@ export class NodeElement {
     /**
      * 
      * @param {ElementEvent} event 
-     * @returns {void}
+     * @return {void}
      */
     defaultHandler(event) {
         if (event.bubbles && this.parent && !event.defaultPrevented) {
@@ -287,7 +287,7 @@ export class NodeElement {
 
     /**
      * @readonly
-     * @returns {number}
+     * @return {number}
      */
     get width() {
         const width = this.style.width;
@@ -304,7 +304,7 @@ export class NodeElement {
 
     /**
      * @readonly
-     * @returns {number}
+     * @return {number}
      */
     get height() {
         const height = this.style.height;

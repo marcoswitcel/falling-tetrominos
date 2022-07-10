@@ -2,7 +2,17 @@
 const singleton = Symbol();
 
 /**
- * Classe utilitária criada para permitir a mais fácil manipulação das instâncias de `Storage`
+ * Classe de persistência de chaves/valores que adiciona uma série de recursos
+ * a funcionalidade de storage padrão disponibilizada através da
+ * Web Storage Api manifestada pelos objetos `window.localStorage` e
+ * `window.sessionStorage`.
+ * 
+ * ## Recursos adicionais
+ * * Sistema de namespace para evitar conflito entre chaves de diversas partes
+ * do sistema
+ * * JSON encode e decode automático caso desejado
+ * * Permite escolher entre estratégias de armazenamento `local` e de `sessão`
+ * de forma mais organizada
  */
 export default class StorageUtility {
 
@@ -75,7 +85,7 @@ export default class StorageUtility {
      * Retorna a chave prefixada
      * 
      * @param {string} key 
-     * @returns {string}
+     * @return {string}
      */
     _prefixedKey(key) {
         /** @TODO analisar com calma as possibilidades de conflito de chave */
@@ -85,7 +95,7 @@ export default class StorageUtility {
     /**
      * 
      * @param {string} key 
-     * @returns {string|Object|null}
+     * @return {string|Object|null}
      */
     getItem(key) {
         key = this._prefixedKey(key);
@@ -116,7 +126,7 @@ export default class StorageUtility {
     }
 
     /**
-     * @returns {void}
+     * @return {void}
      */
     clear() {
         const prefixPattern = this._prefixedKey('');
@@ -131,7 +141,7 @@ export default class StorageUtility {
     /**
      * @param {string} key
      * @param {any} defaultValue  
-     * @returns {string|Object|null}
+     * @return {string|Object|null}
      */
     getItemWithInialization(key, defaultValue) {
         const prefixedKey = this._prefixedKey(key);

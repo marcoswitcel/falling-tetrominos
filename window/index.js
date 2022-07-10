@@ -185,8 +185,7 @@ function drawElement(ctx, rootNode, offset = [0, 0]) {
  * @param {number} x 
  * @param {number} y 
  * @param {number[]} [offset]
- * 
- * @returns {NodeElement}
+ * @return {NodeElement} Elemento que sofreu o click
  */
 function checkClickHit(rootNode, x, y, offset = [0, 0]) {
     let [ offsetX, offsetY ] = offset;

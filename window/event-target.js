@@ -20,7 +20,7 @@ export class EventTarget {
      * 
      * @param {string} type 
      * @param {(any) => void} handler
-     * @returns {void}
+     * @return {void}
      */
     addListener(type, handler) {
         if (!this.eventMap.has(type)) {
@@ -33,7 +33,7 @@ export class EventTarget {
      * 
      * @param {string} type 
      * @param {(any) => void} handler
-     * @returns {void}
+     * @return {void}
      */
     removeListener(type, handler) {
         if (this.eventMap.has(type)) {
@@ -44,7 +44,7 @@ export class EventTarget {
     /**
      * 
      * @param {Event} event 
-     * @returns {void}
+     * @return {void}
      */
     dispatchEvent(event) {
         const handlers = this.eventMap.get(event.type) || new Set;

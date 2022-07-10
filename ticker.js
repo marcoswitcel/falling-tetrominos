@@ -1,7 +1,7 @@
 
 export class Ticker {
     /**
-     * @param {Iterable} pipeline 
+     * @param {Iterable<(time: number) => void>} pipeline 
      * @param { 'auto' | number} times 
      */
     constructor(pipeline, times = 'auto') {
