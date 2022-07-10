@@ -1,4 +1,4 @@
-import StorageUtility from './StorageUtility.js';
+import StorageUtility from './storage-utility.js';
 
 const assert = (condition, description) => {
     console.log(`${condition ? '✅' : '❌'}: ${description}`);
