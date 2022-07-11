@@ -1,10 +1,12 @@
 import { NodeElement } from './window.js';
 import { rgba } from '../colors.js';
-import { drawRect, drawMonospaceText } from '../draw.js';
+import { drawRect } from '../draw.js';
 import { createCanvas } from '../util.js';
 import viewMenu, { menuIDs }  from './views/menu.view.js';
 import viewConfig, { configIDs }  from './views/config.view.js';
 import StorageUtility from '../storage-utility.js';
+import { drawElement } from './draw-element.js';
+import { checkClickHit } from './check-click-hit.js';
 
 function runTest() {
     
@@ -144,79 +146,6 @@ function runTest() {
             }
         });
     }
-}
-
-/**
- * @param {CanvasRenderingContext2D} ctx
- * @param {NodeElement} rootNode
- * @param {number[]} [offset]
- */
-function drawElement(ctx, rootNode, offset = [0, 0]) {
-    let [ offsetX, offsetY ] = offset;
-
-    // Offset com a margin do próprio elemento
-    offsetX += rootNode.style.margin.left;
-    offsetY += rootNode.style.margin.top;
-    
-    drawRect(ctx, offsetX, offsetY, rootNode.width, rootNode.height, rootNode.style.color);
-
-    // Novo offset com o padding
-    offsetX += rootNode.style.padding.left;
-    offsetY += rootNode.style.padding.top;
-
-    for (const child of rootNode.children) {
-        if (child.style.display === 'none') continue;
-        drawElement(ctx, child, [ offsetX, offsetY ]);
-        if (child.type === 'text') {
-            const data = child.data;
-            let line = 1;
-            for (const lines of data.preprocessedText) {
-                drawMonospaceText(ctx, child.style.size, offsetX, offsetY + line * child.style.size - child.style.size * .3, lines, rgba(255, 255, 255));
-                line++;
-            }
-        }
-        offsetY += child.height + child.style.margin.top + child.style.margin.bottom;
-    }
-}
-
-/**
- * 
- * @param {NodeElement} rootNode
- * @param {number} x 
- * @param {number} y 
- * @param {number[]} [offset]
- * @return {NodeElement} Elemento que sofreu o click
- */
-function checkClickHit(rootNode, x, y, offset = [0, 0]) {
-    let [ offsetX, offsetY ] = offset;
-
-    // Offset com a margin do próprio elemento
-    offsetX += rootNode.style.margin.left;
-    offsetY += rootNode.style.margin.top;
-
-    if (x >= offsetX && x <= offsetX + rootNode.width && y >= offsetY && y <= offsetY + rootNode.height) {
-        
-        // Novo offset com o padding
-        offsetX += rootNode.style.padding.left;
-        offsetY += rootNode.style.padding.top;
-
-
-        for (const child of rootNode.children) {
-            if (child.style.display === 'none') continue;
-
-            let collidedElement = checkClickHit(child, x, y, [ offsetX, offsetY ]);
-
-            if (collidedElement) {
-                return collidedElement;
-            }
-           
-            offsetY += child.height + child.style.margin.top + child.style.margin.bottom;
-        }
-
-        return rootNode;
-    }
-
-    return null;
 }
 
 runTest();
