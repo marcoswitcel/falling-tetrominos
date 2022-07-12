@@ -1,3 +1,4 @@
+import { makeFieldReadOnly } from "./utility.js";
 
 /**
  * ### Classe base dos eventos
@@ -24,6 +25,13 @@ export class Event {
          * @type {any} dados do evento caso seja necessário
          */
         this.data = data;
+
+        makeFieldReadOnly(this, 'type');
+        /** 
+         * @todo João, checar se faz sentido deixar o campo data
+         * como readonly.
+         */
+        // makeFieldReadOnly(this, 'data');
     }
 }
 
