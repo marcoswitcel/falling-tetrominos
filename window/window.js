@@ -138,6 +138,9 @@ export class Element {
     }
 }
 
+/**
+ * Evento especializado para `NodeElement`
+ */
 export class ElementEvent extends Event {
     /**
      * @param {string} type 
