@@ -57,10 +57,10 @@ export class EventTarget {
     }
     
     /**
-     * Adiciona uma função ao conjunto caso ela não exista no mesmo conjunto,
-     * caso contrário a mesma será apenas ingorada pois já faz parte.
+     * Adiciona uma função ao conjunto caso ela ainda não faça, se fizer
+     * ela será apenas ignorada.
      * @param {string} type Tipo do evento aonde a função deve ser associada
-     * @param {(any) => void} handler Função que deve ser adicionada a lista
+     * @param {(event: Event) => void} handler Função que deve ser adicionada a lista
      * @return {void}
      */
     addListener(type, handler) {
@@ -76,9 +76,9 @@ export class EventTarget {
 
     /**
      * Caso a função passada exista no conjunto associado ao tipo ela será
-     * removida, senão apenas será ignorada.
+     * removida, senão será apenas ignorada.
      * @param {string} type Tipo do evento aonde a função deve ser desassociada
-     * @param {(any) => void} handler Função que deve ser removida caso exista
+     * @param {(event: Event) => void} handler Função que deve ser removida caso exista
      * @return {void}
      */
     removeListener(type, handler) {
