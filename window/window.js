@@ -1,34 +1,6 @@
 import { rgba } from '../colors.js';
 import { Event, EventTarget } from './event-target.js';
 
-export class Node {
-    /**
-     * @param {Object} param0
-     * @param {Node} [param0.parent]
-     * @param {Set<Node>|Node[]} param0.children
-     * @param {any} [param0.value]
-     */
-    constructor({ parent = null, children, value = null }) {
-        /** @type {Node} */
-        this.parent = parent;
-        /** @type {Set<Node>} */
-        this.children = (children instanceof Set) ? children : new Set(children);
-        /** @type {any} */
-        this.value = value;
-
-        this.setParentOfChildren();
-    }
-
-    /**
-     * Atualiza a propriedade `parent` para referenciar o novo `parent`
-     */
-    setParentOfChildren() {
-        for(const children of this.children) {
-            children.parent = this;
-        }
-    }
-}
-
 class PositionalValues {
     /**
      * 
@@ -65,19 +37,6 @@ class PositionalValues {
     }
 }
 
-/**
- * @param  {...any} args 
- * @return {Set<Node>}
- */
-export function nodeSet(...args) {
-    return new Set(
-        args.map(value => new Node({
-            value,
-            children: []
-        }))
-    );
-}
-
 class Percentage extends Number {};
 class ViewWidth extends Number {};
 class ViewHeight extends Number {};
@@ -109,32 +68,6 @@ export class Style {
         this.wrap = wrap;
         /** @type {'block'|'none'} *///@ts-expect-error
         this.display = display;
-    }
-}
-
-export class Element {
-    constructor(type, style) {
-        /** 
-         * @readonly
-         * @type {string}
-         */
-        this.type = type;
-        /** @type {Style} */
-        this.style = new Style(style);
-    }
-
-    /**
-     * @readonly
-     */
-    get width() {
-        return this.style.width;
-    }
-
-    /**
-     * @readonly
-     */
-    get height() {
-        return this.style.height;
     }
 }
 
