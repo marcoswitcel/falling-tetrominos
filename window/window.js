@@ -168,6 +168,11 @@ export class ElementEvent extends Event {
     }
 }
 
+/**
+ * @typedef {'click'|'mousein'|'mouseout'} EventTypeList Lista de nomes dos
+ * eventos registrados até então
+ */
+
 export class NodeElement {
     /**
      * @param {Object} param0
@@ -220,9 +225,10 @@ export class NodeElement {
     }
 
     /**
-     * 
-     * @param {string} type 
-     * @param {(any) => void} handler
+     * Adiciona uma função de resposta para responder quando algum tipo
+     * específico de evento for despachado neste elemento.
+     * @param {EventTypeList} type 
+     * @param {(event: ElementEvent) => void} handler
      * @return {void}
      */
     addListener(type, handler) {
@@ -230,9 +236,10 @@ export class NodeElement {
     }
 
     /**
-     * 
-     * @param {string} type 
-     * @param {(any) => void} handler
+     * Remove uma função de resposta vinculada a algum tipo específico de
+     * evento. Caso ela não existir, apenas ignora.
+     * @param {EventTypeList} type 
+     * @param {(event: ElementEvent) => void} handler
      * @return {void}
      */
     removeListener(type, handler) {
@@ -242,7 +249,7 @@ export class NodeElement {
     /**
      * Método público que despacha o evento no elemento, causando assim
      * o seu processamento pelas funções de resposta (handlers).
-     * @param {'click'|'mousein'|'mouseout'} eventType Tipo do evento
+     * @param {EventTypeList} eventType Tipo do evento
      * @param {any} [data] Dados do evento
      * @return {void}
      */
@@ -298,7 +305,7 @@ export class NodeElement {
      * @private
      */
     setParentOfChildren() {
-        for(const children of this.children) {
+        for (const children of this.children) {
             children.parent = this;
         }
     }
