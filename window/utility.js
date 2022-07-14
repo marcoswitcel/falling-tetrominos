@@ -1,6 +1,10 @@
 
 /**
- * Função que configura um campo preexisten em um objeto como `apenas leitura`.
+ * Função que configura um campo preexistente em um objeto como
+ * `apenas leitura`. A configuração pode ou não ser reversível, depende do
+ * parâmetro `configurable`, por padrão definido como `false`.
+ * @see {@link https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#configurable}
+ * 
  * @param {object} object objeto que terá o campo promovido a apenas leitura
  * @param {string} field campo que já existe no objeto e será configurado
  * como apenas leitura

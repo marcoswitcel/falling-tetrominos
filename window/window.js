@@ -165,8 +165,6 @@ export class ElementEvent extends Event {
         this.defaultPrevented = defaultPrevented;
         /** @type {Boolean} */
         this.cancelable = cancelable;
-        /** @type {any} */
-        this.data = data;
     }
 }
 
@@ -234,9 +232,10 @@ export class NodeElement {
     }
 
     /**
-     * 
-     * @param {'click'|'mousein'|'mouseout'} eventType 
-     * @param {any} data 
+     * Método público que despacha o evento no elemento, causando assim
+     * o seu processamento pelas funções de resposta (handlers).
+     * @param {'click'|'mousein'|'mouseout'} eventType Tipo do evento
+     * @param {any} [data] Dados do evento
      * @return {void}
      */
     dispatchEvent(eventType, data = null) {
@@ -253,8 +252,11 @@ export class NodeElement {
     }
 
     /**
-     * 
-     * @param {ElementEvent} event 
+     * Método com a lógica padrão de encaminhamento de eventos entre instâncias
+     * de `NodeElement`.
+     * @private
+     * @param {ElementEvent} event Evento que será encaminhado para esse
+     * elemento
      * @return {void}
      */
     bubbleEvent(event) {
@@ -268,8 +270,13 @@ export class NodeElement {
     }
 
     /**
-     * 
-     * @param {ElementEvent} event 
+     * Método com a lógica padrão de processamento dos eventos, é chamado 
+     * sempre após o processamento de todos as funções de resposta associadas
+     * ao evento sendo processado. Isso permite que as funções de resposta 
+     * requisitem a prevenção do comportamento padrão, assim parando o efeito
+     * de propagação e outros tipos de comportamentos causados pelo evento.
+     * @private
+     * @param {ElementEvent} event Evento sendo processado
      * @return {void}
      */
     defaultHandler(event) {

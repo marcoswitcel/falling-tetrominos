@@ -27,11 +27,7 @@ export class Event {
         this.data = data;
 
         makeFieldReadOnly(this, 'type');
-        /** 
-         * @todo João, checar se faz sentido deixar o campo data
-         * como readonly.
-         */
-        // makeFieldReadOnly(this, 'data');
+        makeFieldReadOnly(this, 'data');
     }
 }
 
