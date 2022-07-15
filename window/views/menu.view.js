@@ -3,7 +3,7 @@ import { NodeElement, percentage } from '../window.js';
 
 export const menuIDs = {};
 
-export default new NodeElement({
+export const viewMenu = new NodeElement({
     type: 'view',
     children: [
         new NodeElement({ type: 'button', style: { display: 'none', width: 350, height: 10 }, children: [] }),

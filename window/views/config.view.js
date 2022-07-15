@@ -1,9 +1,12 @@
 import { rgba } from '../../colors.js';
 import { NodeElement, percentage } from '../window.js';
 
-export const configIDs = {};
+export const configIDs = {
+    /** @type {NodeElement} */
+    button: null,
+};
 
-export default new NodeElement({
+export const viewConfig = new NodeElement({
     type: 'view',
     style: {
         display: 'none',
