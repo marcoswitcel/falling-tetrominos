@@ -1,6 +1,4 @@
 
-const singleton = Symbol();
-
 /**
  * Classe de persistência de chaves/valores que adiciona uma série de recursos
  * a funcionalidade de storage padrão disponibilizada através da
@@ -17,40 +15,32 @@ const singleton = Symbol();
 export default class StorageUtility {
 
     /**
-     * @TODO João, criar uma factory para esse tipo de funcionalidade
-     * @constant
+     * @private
      * @readonly
-     * @type {StorageUtility}
-     */
-    static get singleton() {
-        if (!this[singleton]) {
-            this[singleton] = new StorageUtility;
-        }
-        return this[singleton];
-    }
-
-    /**
      * @type {string}
      */
-    _prefix = '';
+    prefix = '';
 
     /**
-     * @constant
+     * @private
+     * @readonly
      * @type { 'local' | 'session' }
      */
-    _type = 'local';
+    type = 'local';
 
     /**
-     * @constant
+     * @private
+     * @readonly
      * @type {Storage}
      */
-    _storage = null;
+    storage = null;
 
     /**
-     * @constant
+     * @private
+     * @readonly
      * @type {boolean} 
      */
-    _jsonEncode = false;
+    jsonEncode = false;
 
     /**
      * 
@@ -59,10 +49,10 @@ export default class StorageUtility {
      * @param {boolean} [jsonEncode] 
      */
     constructor(prefix = '', type = 'local', jsonEncode = true) {
-        this._prefix = prefix;
-        this._type = type;
-        this._storage = (type === 'local') ? window.localStorage: window.sessionStorage;
-        this._jsonEncode = jsonEncode;
+        this.prefix = prefix;
+        this.type = type;
+        this.storage = (type === 'local') ? window.localStorage: window.sessionStorage;
+        this.jsonEncode = jsonEncode;
     }
 
     /**
@@ -72,9 +62,9 @@ export default class StorageUtility {
      */
     get length() {
         let keyCount = 0;
-        const prefixPattern = this._prefixedKey('');
+        const prefixPattern = this.prefixedKey('');
 
-        for (const key in this._storage) {
+        for (const key in this.storage) {
             keyCount += +(key.startsWith(prefixPattern));
         }
 
@@ -83,13 +73,13 @@ export default class StorageUtility {
 
     /**
      * Retorna a chave prefixada
-     * 
-     * @param {string} key 
-     * @return {string}
+     * @private
+     * @param {string} key chave que será prefixada
+     * @return {string} a chave prefixada
      */
-    _prefixedKey(key) {
+    prefixedKey(key) {
         /** @TODO analisar com calma as possibilidades de conflito de chave */
-        return this._prefix ? `${this._prefix}:#:${key}` : key;
+        return this.prefix ? `${this.prefix}:#:${key}` : key;
     }
 
     /**
@@ -98,10 +88,10 @@ export default class StorageUtility {
      * @return {string|Object|null}
      */
     getItem(key) {
-        key = this._prefixedKey(key);
-        const value = this._storage.getItem(key);
+        key = this.prefixedKey(key);
+        const value = this.storage.getItem(key);
 
-        return this._jsonEncode ? JSON.parse(value) : value;
+        return this.jsonEncode ? JSON.parse(value) : value;
     }
     
     /**
@@ -109,8 +99,8 @@ export default class StorageUtility {
      * @return {void}
      */
     removeItem(key) {
-        key = this._prefixedKey(key);
-        this._storage.removeItem(key);
+        key = this.prefixedKey(key);
+        this.storage.removeItem(key);
     }
     
     /**
@@ -120,20 +110,20 @@ export default class StorageUtility {
      * @return {void}
      */
     setItem(key, value) {
-        key = this._prefixedKey(key);
-        value = this._jsonEncode ? JSON.stringify(value) : value;
-        this._storage.setItem(key, value);
+        key = this.prefixedKey(key);
+        value = this.jsonEncode ? JSON.stringify(value) : value;
+        this.storage.setItem(key, value);
     }
 
     /**
      * @return {void}
      */
     clear() {
-        const prefixPattern = this._prefixedKey('');
+        const prefixPattern = this.prefixedKey('');
 
-        for (const key in this._storage) {
+        for (const key in this.storage) {
             if (key.startsWith(prefixPattern)) {
-                this._storage.removeItem(key);
+                this.storage.removeItem(key);
             }
         }
     }
@@ -144,8 +134,8 @@ export default class StorageUtility {
      * @return {string|Object|null}
      */
     getItemWithInialization(key, defaultValue) {
-        const prefixedKey = this._prefixedKey(key);
-        let value = this._storage.getItem(prefixedKey);
+        const prefixedKey = this.prefixedKey(key);
+        let value = this.storage.getItem(prefixedKey);
 
         if (value === null) {
             this.setItem(key, defaultValue);
@@ -153,6 +143,6 @@ export default class StorageUtility {
             return defaultValue;
         }
 
-        return this._jsonEncode ? JSON.parse(value) : value;
+        return this.jsonEncode ? JSON.parse(value) : value;
     }
 }
