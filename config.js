@@ -14,9 +14,11 @@ export const ArenaConfig = {
 ArenaConfig.width = ArenaConfig.arena.x * ArenaConfig.blockSize;
 ArenaConfig.height = ArenaConfig.arena.y * ArenaConfig.blockSize;
 
+const urlParams = new URLSearchParams(window.location.search);
+
 export const AppConfig = {
-    devMode: true,
-    debugInfoOn: true,
+    devMode: urlParams.get('devMode') === 'true',
+    debugInfoOn: urlParams.get('debugInfoOn') === 'true',
 }
 
 export default {
