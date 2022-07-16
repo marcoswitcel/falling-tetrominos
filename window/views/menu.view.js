@@ -1,7 +1,20 @@
 import { rgba } from '../../colors.js';
 import { NodeElement, percentage } from '../window.js';
 
-export const menuIDs = {};
+export const menuIDs = {
+    /** @type {NodeElement} */
+    button: null,
+    /** @type {NodeElement} */
+    addButton: null,
+    /** @type {NodeElement} */
+    addButtonText: null,
+    /** @type {NodeElement} */
+    mouseInOutdButton: null,
+    /** @type {NodeElement} */
+    mouseInOutText: null,
+    /** @type {NodeElement} */
+    text: null,
+};
 
 export const viewMenu = new NodeElement({
     type: 'view',
