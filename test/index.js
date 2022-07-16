@@ -1,5 +1,5 @@
-import StorageUtility from './storage-utility.js';
-import { StorageUtilityTest } from './storage-utility.test.js';
+import StorageUtility from '../storage-utility.js';
+import { StorageUtilityTest } from '../storage-utility.test.js';
 
 const assert = (condition, description) => {
     console.log(`${condition ? '✅' : '❌'}: ${description}`);
