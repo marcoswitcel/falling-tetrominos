@@ -334,6 +334,22 @@ export class TetrisShell {
             if (this.debugInfoOn) {
                 drawMonospaceText(context, 18, 5, 40, `state: ${labels[arena.state]}`, 'white');
             }
+
+            // Desenhando instruções
+            /**
+             * @todo João, melhorar isso aqui
+             */
+            [ 
+                'Movimento',
+                '← → ↑ ↓',
+                'Rotação',
+                'q: ↻',
+                'e: ↺',
+                'r: reiniciar',
+                'p: pause/jogar',
+            ].forEach((text, index) => {
+                drawMonospaceText(context, 16, 7, height - 170 + index * 22, text, 'white');
+            });
         }
 
         this.pipeline = [ arena.update, renderArena ];
