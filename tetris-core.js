@@ -331,7 +331,7 @@ export class TetrisShell {
     listen() {
         window.addEventListener('keydown', (event) => {
 
-            if (event.key === 'p') {
+            if (event.key === 'p' && this.arena.state !== ARENA_STATE.ENDSCREEN) {
                 this.arena.state = (this.arena.state === ARENA_STATE.RUNNING) ? ARENA_STATE.PAUSED : ARENA_STATE.RUNNING;
             }
 
