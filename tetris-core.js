@@ -334,6 +334,10 @@ export class TetrisShell {
             if (this.debugInfoOn) {
                 drawMonospaceText(context, 18, 5, 40, `state: ${labels[arena.state]}`, 'white');
             }
+            
+            if (this.arena.state === ARENA_STATE.ENDSCREEN) {
+                drawMonospaceText(context, 18, 5, 60, 'Fim de jogo', 'white');
+            }
 
             // Desenhando instruções
             /**
