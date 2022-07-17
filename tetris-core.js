@@ -165,6 +165,7 @@ function rotateMatrix(matrix, dir) {
 }
 
 export class TetrisArena {
+
     constructor(width, height) {
         this.width = width;
         this.height = height;
@@ -187,6 +188,18 @@ export class TetrisArena {
                 this.arenaMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
             }
         }
+    }
+
+    /**
+     * Método que reinicia a arena para uma nova partida
+     * @return {void}
+     */
+    reset() {
+        this.state = ARENA_STATE.RUNNING;
+        this.filledMatrix = createMatrix(this.width, this.height); 
+        this.arenaMatrix = createMatrix(this.width, this.height);
+        this.newBlock(); // Inicializa primeiro bloco
+        this.score = 0;
     }
 
     tryRotate(dir) {
@@ -333,6 +346,19 @@ export class TetrisShell {
 
             if (event.key === 'p' && this.arena.state !== ARENA_STATE.ENDSCREEN) {
                 this.arena.state = (this.arena.state === ARENA_STATE.RUNNING) ? ARENA_STATE.PAUSED : ARENA_STATE.RUNNING;
+            }
+
+            /**
+             * @todo João, mover esse componente de prompt para dentro da UI da aplicação
+             */
+            if (event.key === 'r' &&
+                window.confirm(
+                    ARENA_STATE.ENDSCREEN === this.arena.state
+                    ? 'Jogar mais uma partida?'
+                    : 'Reiniciar partida?'
+                )
+            ) {
+                this.arena.reset();
             }
 
             if (this.arena.state !== ARENA_STATE.RUNNING) return;
