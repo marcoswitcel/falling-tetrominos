@@ -17,6 +17,12 @@
 * testes para ajudar a documentar os componentes de layout, sistema de eventos?
 * sistema que permita o mix de classes para facilitar a reutilização de funcionalidades como eventTarget?
 
+## Sistema de testes e cobrir alguns testes essenciais
+
+nomenclatura escolhida testes com .test.js no final -- ok
+funções de teste não métodos de teste -- ok
+função como expect(2).toBeEqual(2)
+
 ## Telas e ações a adicionar
 
 * menu com botão de play, logo do jogo e talvez botão pra tela de configuração

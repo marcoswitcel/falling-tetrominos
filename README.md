@@ -20,3 +20,6 @@ Como técnica fiz uso de modularização seguindo o padrão moderno [módulos ES
 * Padrão de documentação de tipos JSDoc: [https://jsdoc.app/](https://jsdoc.app/)
 * Módulos ES6: [https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Modules](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Modules)
 * Arquivo JSConfig e a diretiva checkJs: [https://code.visualstudio.com/docs/languages/jsconfig](https://code.visualstudio.com/docs/languages/jsconfig)
+* Gist (usuário David Mark) com diferenças do modo restrito: [https://gist.github.com/david-mark/7a06527c5e9da908ae50a73b60ddb57f](https://gist.github.com/david-mark/7a06527c5e9da908ae50a73b60ddb57f)
+* Strict Mode: [https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Strict_mode](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Strict_mode)
+* Strict Mode sempre habilitado em código que faz uso de módulos ES6: [https://262.ecma-international.org/6.0/#sec-strict-mode-code](https://262.ecma-international.org/6.0/#sec-strict-mode-code)
