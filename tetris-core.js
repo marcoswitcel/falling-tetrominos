@@ -350,7 +350,7 @@ export class TetrisShell {
                 'q: ↻',
                 'e: ↺',
                 'r: reiniciar',
-                'p: pause/jogar',
+                'p: pausar/jogar',
             ].forEach((text, index) => {
                 drawMonospaceText(context, 16, 7, height - 170 + index * 22, text, 'white');
             });
