@@ -1,5 +1,6 @@
 import StorageUtility from '../storage-utility.js';
 import { StorageUtilityTest } from '../storage-utility.test.js';
+import { TickerTest } from '../ticker.test.js';
 
 const assert = (condition, description) => {
     console.log(`${condition ? '✅' : '❌'}: ${description}`);
@@ -71,4 +72,10 @@ grava_e_le_objetos_valores: {
 
 sessionStorage.clear();
 
+/**
+ * @todo João, refatorar esse trecho para fazer uso de uma função executora
+ * para agregar informações e garantir que os testes não sejam interrompidos
+ * por falhas em testes anteriores.
+ */
 StorageUtilityTest.run();
+TickerTest.run();
