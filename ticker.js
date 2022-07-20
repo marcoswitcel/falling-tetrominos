@@ -1,24 +1,53 @@
 
 export class Ticker {
+
     /**
      * @param {Iterable<(time: number) => void>} pipeline 
-     * @param { 'auto' | number} times 
+     * @param { 'auto' | number } times 
      */
     constructor(pipeline, times = 'auto') {
+        /**
+         * @private
+         * @type {boolean}
+         */
         this.running = false;
+        /**
+         * @private
+         * @type {number}
+         */
         this.lastTime = 0;
-        this._tickerID = null;
+        /**
+         * @private
+         * @type {number}
+         */
+        this.tickerID = null;
+        /**
+         * @private
+         * @type {Iterable<(time: number) => void>}
+         */
         this.pipeline = pipeline;
+        /**
+         * @private
+         * @type {'auto' | number}
+         */
         this.times = (times === 'auto') ? 'auto' : 1000 / times;
+        /**
+         * @private
+         * @type {number}
+         */
         this.cumulatedTime = 0;
 
-        this._update = (time  = 0) => {
+        /**
+         * @private
+         * @param {number} [time] valor de tempo em milissegundos
+         */
+        this.update = (time  = 0) => {
             const deltaTime = time - this.lastTime;
             this.lastTime = time;
             this.cumulatedTime += deltaTime;
 
             try {
-                this._tickerID = requestAnimationFrame(this._update);
+                this.tickerID = requestAnimationFrame(this.update);
 
                 if (this.times === 'auto' || this.cumulatedTime > this.times) {
                     for (let system of pipeline) {
@@ -35,13 +64,19 @@ export class Ticker {
         }
     }
 
+    /**
+     * Método que para a execução do ticker
+     */
     clear() {
-        cancelAnimationFrame(this._tickerID);
+        cancelAnimationFrame(this.tickerID);
     }
 
+    /**
+     * Método que inicializa o ticker
+     */
     start() {
         if (!this.running) {
-            this._update();
+            this.update();
         }
     }
 }
