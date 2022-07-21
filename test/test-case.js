@@ -2,25 +2,31 @@
 export class TestCase {
 
     /**
-     * beforeEach
+     * Procedimento que será chamado antes de cada método de teste.
      * @return {void}
      */
     beforeEach() { }
 
     /**
-     * beforeAll
+     * Procedimento que será chamado antes de todos os outros métodos. Ideal 
+     * para realizar procedimentos de inicialização que precisam ser feitos
+     * apenas uma vez durante todo o ciclo de teste da classe. Logo antes de
+     * iniciar a execução dos testes.
      * @return {void}
      */
     beforeAll() { }
 
     /**
-     * afterEach
+     * Procedimento que será chamado após cada método de teste
      * @return {void}
      */
     afterEach() { }
 
     /**
-     * afterAll
+     * Procedimento que será chamado após todos os outros métodos. Ideal 
+     * para realizar procedimentos de encerramento que precisam ser feitos
+     * apenas uma vez durante todo o ciclo de teste da classe. Logo após o
+     * término da execução de todos os testes.
      * @return {void}
      */
     afterAll() { }
