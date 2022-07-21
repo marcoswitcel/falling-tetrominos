@@ -1,10 +1,6 @@
 import { Ticker } from './ticker.js';
-import { TestCase } from './test-case.js';
-
-
-const assert = (condition, description) => {
-    console.log(`${condition ? '✅' : '❌'}: ${description}`);
-}
+import { TestCase } from './test/test-case.js';
+import { assert } from './test/assert-utils.js';
 
 /**
  * @todo João, terminar de analisar se os casos principais estão cobertos

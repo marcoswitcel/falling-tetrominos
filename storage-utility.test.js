@@ -1,9 +1,6 @@
 import StorageUtility from './storage-utility.js';
-import { TestCase } from './test-case.js';
-
-const assert = (condition, description) => {
-    console.log(`${condition ? '✅' : '❌'}: ${description}`);
-}
+import { assert } from './test/assert-utils.js';
+import { TestCase } from './test/test-case.js';
 
 export class StorageUtilityTest extends TestCase {
 
