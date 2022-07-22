@@ -1,6 +1,9 @@
 
 export class TetrisBlockManager {
 
+    /**
+     * @returns {{ code: number, matrix: number[][]}}
+     */
     static getRandomBlockMatrix() {
         const blocks = ['T', 'L', 'I', 'B', 'J', 'Z', 'ZI'];
         return JSON.parse(

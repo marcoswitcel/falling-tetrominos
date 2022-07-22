@@ -14,10 +14,29 @@ class ARENA_STATE {
 }
 
 class FallingBlock {
+    /**
+     * Monta um objeto que representa um dado tetromino em queda.
+     * @param {number} x posição no eixo horizontal
+     * @param {number} y posição no eixo vertical
+     * @param {{ code: number, matrix: number[][]}} blockMatrix 
+     */
     constructor(x, y, blockMatrix) {
+        /**
+         * @type {number}
+         */
         this.x = x;
+        /**
+         * @type {number}
+         */
         this.y = y;
+        /**
+         * @readonly
+         * @type {number}
+         */
         this.code = blockMatrix.code;
+        /**
+         * @type {number[][]}
+         */
         this.matrix = blockMatrix.matrix;
     }
 }
@@ -56,7 +75,16 @@ function mergeArenaAndBlock(arena, block, width, height) {
     return mergedArena;
 }
 
-function IsFallingBlockInFreeSpace(arena, block, width, height) {
+/**
+ * Função que checa se o espaço aonde o bloco que está caindo vai ser inserido
+ * está de fato livre para inserção.
+ * @param {number[][]} arena matriz que represente a arena
+ * @param {FallingBlock} block Bloco que está sendo testado
+ * @param {number} width largura da arena
+ * @param {number} height altura da arena
+ * @returns {boolean}
+ */
+function isFallingBlockInFreeSpace(arena, block, width, height) {
     const blockMatrix = block.matrix;
     for (let row = blockMatrix.length; row--;) {
         for (let col = blockMatrix[row].length; col--;) {
@@ -133,7 +161,7 @@ export class TetrisArena {
         const oldMatrix = this.fallingBlock.matrix;
         this.fallingBlock.matrix = rotateMatrix(oldMatrix, dir);
 
-        if (!IsFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
+        if (!isFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
             this.fallingBlock.matrix = oldMatrix;
         }
     }
@@ -142,7 +170,7 @@ export class TetrisArena {
         const oldX = this.fallingBlock.x;
         this.fallingBlock.x += dir;
 
-        if (!IsFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
+        if (!isFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
             this.fallingBlock.x = oldX;
         }
     }
@@ -151,7 +179,7 @@ export class TetrisArena {
         this.cumulatedTime = 0;
         this.fallingBlock.y++;
                 
-        if (IsFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
+        if (isFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
             this.arenaMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
         } else {
             this.fallingBlock.y--;
@@ -191,7 +219,7 @@ export class TetrisArena {
         const sx = (this.width /  2 | 0) - (blockMatrix.matrix[0].length / 2 | 0);
         const sy = 0;
         this.fallingBlock = new FallingBlock(sx, sy, blockMatrix);
-        if (!IsFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
+        if (!isFallingBlockInFreeSpace(this.filledMatrix, this.fallingBlock, this.width, this.height)) {
             this.state = ARENA_STATE.ENDSCREEN;
         }
     }
