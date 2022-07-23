@@ -42,11 +42,13 @@ class FallingBlock {
 }
 
 /**
- * 
+ * Função que produz uma nova matriz a partir da mescla da matriz antiga
+ * e do bloco que está caindo.
  * @param {number[][]} arena 
- * @param {FallingBlock} block 
+ * @param {FallingBlock} fallingBlock 
+ * @returns {number[][]}
  */
-function mergeArenaAndBlock(arena, block, width, height) {
+function mergeArenaAndBlock(arena, fallingBlock, width, height) {
     const mergedArena = createMatrix(width, height);
     // Copiando arena antiga
     for (let row = mergedArena.length; row--;) {
@@ -55,13 +57,13 @@ function mergeArenaAndBlock(arena, block, width, height) {
         }
     }
     // Copiando falling block
-    const blockMatrix = block.matrix;
+    const blockMatrix = fallingBlock.matrix;
     for (let row = blockMatrix.length; row--;) {
         for (let col = blockMatrix[row].length; col--;) {
 
             if (blockMatrix[row][col] !== 0) {
-                const arenaRow = row + block.y;
-                const arenaCol = col + block.x;
+                const arenaRow = row + fallingBlock.y;
+                const arenaCol = col + fallingBlock.x;
                 if (arenaRow >= 0 && arenaRow < height &&
                     arenaCol >= 0 && arenaCol < width
                     ) {
@@ -125,7 +127,9 @@ export class TetrisArena {
         this.width = width;
         this.height = height;
         this.state = ARENA_STATE.RUNNING;
-        this.filledMatrix = createMatrix(width, height); 
+        /** @type {number[][]} */
+        this.filledMatrix = createMatrix(width, height);
+        /** @type {number[][]} */
         this.arenaMatrix = createMatrix(width, height);
         this.newBlock(); // Inicializa primeiro bloco
         this.score = 0;
