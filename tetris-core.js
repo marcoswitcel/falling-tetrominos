@@ -226,7 +226,7 @@ export class TetrisArena {
 
     get colorMap() {
         return [
-            null,
+            rgba(0, 0, 0), // Não é usado geralmente
             rgba(255, 0, 0),
             rgba(0, 255, 0),
             rgba(0, 0, 255),

@@ -28,6 +28,21 @@ export class RGBA {
         this.a = a;
     }
 
+    /**
+     * 
+     * @param {number} [value] Valor de escurecimento. Exemplo: 0.1 equivale
+     * a dizer que a cor terá todos os canais de cor reduzidos em 10% do valor
+     * atual.
+     * @returns {RGBA}
+     */
+    darken(value = 0.1) {
+        return new RGBA(
+            Math.max(this.r * (1 - value), 0),
+            Math.max(this.g * (1 - value), 0),
+            Math.max(this.b * (1 - value), 0),
+        );
+    }
+
     toString() {
         return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
     }

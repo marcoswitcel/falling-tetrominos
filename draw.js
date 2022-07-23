@@ -41,16 +41,23 @@ export function drawMonospaceText(ctx, size, sx, sy, text, color) {
  * @param {number} sy Posição inicial no eixo `y`
  * @param {number} size Tamanhado de cada bloc, influenciará o tamanho final da
  * matriz desenhada
- * @param {string[] | import('./colors.js').RGBA[]} colorMap Mapa de cores para
+ * @param {import('./colors.js').RGBA[]} colorMap Mapa de cores para
  * cada número da matriz
  */
 export function drawFilledMatrix(ctx, matrix, sx, sy, size, colorMap) {
+    const darkenColorMap = colorMap.map(color => color.darken(0.2).toString());
+
     for (let row = matrix.length; row--;) {
         for (let col = matrix[row].length; col--;) {
             if (matrix[row][col]) {
                 const color = colorMap[matrix[row][col]];
-                ctx.fillStyle = color.toString();
+                const darkenColor = darkenColorMap[matrix[row][col]];
+                // Área completa do quadrado, só as "bordas" não serão recoloridas
+                ctx.fillStyle = darkenColor;
                 ctx.fillRect(sx + col * size, sy + row * size, size, size);
+                // Desenha o quadrado do centro, deixando só as bordas de fora
+                ctx.fillStyle = color.toString();
+                ctx.fillRect(sx + col * size + 1, sy + row * size + 1, size - 2, size -2);
             }
         }
     }
