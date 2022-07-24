@@ -123,17 +123,42 @@ function rotateMatrix(matrix, dir) {
 
 export class TetrisArena {
 
+    /**
+     * @param {number} width Largura da arena
+     * @param {number} height Altura da arena
+     */
     constructor(width, height) {
+        /**
+         * @readonly
+         * @type {number}
+         */
         this.width = width;
+        /**
+         * @readonly
+         * @type {number}
+         */
         this.height = height;
+        /**
+         * @see {@link ARENA_STATE}
+         * @type {0|1|2}
+         */
         this.state = ARENA_STATE.RUNNING;
-        /** @type {number[][]} */
+        /**
+         * @type {number[][]}
+         */
         this.filledMatrix = createMatrix(width, height);
-        /** @type {number[][]} */
+        /**
+         * @type {number[][]}
+         */
         this.arenaMatrix = createMatrix(width, height);
         this.newBlock(); // Inicializa primeiro bloco
+        /**
+         * @type {number}
+         */
         this.score = 0;
-
+        /**
+         * @type {number}
+         */
         this.cumulatedTime = 0;
         this.update = (deltatime) => {
             this.cumulatedTime += deltatime;
