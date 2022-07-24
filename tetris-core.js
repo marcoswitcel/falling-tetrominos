@@ -160,17 +160,24 @@ export class TetrisArena {
          * @type {number}
          */
         this.cumulatedTime = 0;
-        this.update = (deltatime) => {
-            this.cumulatedTime += deltatime;
+    }
 
-            if (this.state !== ARENA_STATE.RUNNING) return;
+    /**
+     * Método que contém a lógica de atualização da arena
+     * @this TetrisArena
+     * @param {number} deltatime 
+     * @returns {void}
+     */
+    update = (deltatime) => {
+        this.cumulatedTime += deltatime;
 
-            if (this.cumulatedTime > 1000) {
-                this.blockFall();
+        if (this.state !== ARENA_STATE.RUNNING) return;
 
-            } else {
-                this.arenaMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
-            }
+        if (this.cumulatedTime > 1000) {
+            this.blockFall();
+
+        } else {
+            this.arenaMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
         }
     }
 
