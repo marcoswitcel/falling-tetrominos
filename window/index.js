@@ -7,6 +7,7 @@ import { viewConfig, configIDs }  from './views/config.view.js';
 import StorageUtility from '../storage-utility.js';
 import { drawElement } from './draw-element.js';
 import { checkClickHit } from './check-click-hit.js';
+import { Ticker } from '../ticker.js';
 
 function runTest() {
     
@@ -36,14 +37,12 @@ function runTest() {
     const storage = new StorageUtility('window');
     menuIDs.addButtonText.data.value.count =  storage.getItemWithInialization('count', 0);
 
-
-    requestAnimationFrame(function update(timestamp) {
-        // console.time('all');
-        drawRect(context, 0, 0, width, height, rgba(255, 255, 255));
-        drawElement(context, root);
-        requestAnimationFrame(update);
-        // console.timeEnd('all');
-    })
+    new Ticker([
+        () => {
+            drawRect(context, 0, 0, width, height, rgba(255, 255, 255));
+            drawElement(context, root);
+        }
+    ]).start();
 
     test: {
         break test;

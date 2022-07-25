@@ -77,6 +77,13 @@ export class Ticker {
 
     /**
      * Método que inicializa o ticker
+     * @todo João, talvez fosse interessant o método start não invocar o update
+     * logo de cara e sim registrar o callback para rodar no próximo frame.
+     * Talvez seria interessante ter outro método ou até mesmo um parâmetro
+     * no método atual para configurar esse comportamento.
+     * @todo João, se o framerate passado na função construtora for maior que o
+     * framerate do monitor essa classe utilitária não vai ter o comportamento
+     * correto.
      * @return {void}
      */
     start() {
