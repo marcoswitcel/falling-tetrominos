@@ -1,5 +1,6 @@
 import { StorageUtilityTest } from '../storage-utility.test.js';
 import { TickerTest } from '../ticker.test.js';
+import { EventTest } from '../window/event.test.js';
 
 
 /**
@@ -9,3 +10,4 @@ import { TickerTest } from '../ticker.test.js';
  */
 StorageUtilityTest.run();
 TickerTest.run();
+EventTest.run();
