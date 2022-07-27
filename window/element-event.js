@@ -1,7 +1,7 @@
 import { Event } from './event-target.js';
 
 /**
- * @typedef {import('./window.js').NodeElement} NodeElement
+ * @typedef {import('./node-element.js').NodeElement} NodeElement
  */
 
 /**
