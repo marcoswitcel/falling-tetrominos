@@ -1,4 +1,4 @@
-import { NodeElement } from './window.js';
+import { NodeElement } from './node-element.js';
 import { rgba } from '../colors.js';
 import { drawRect } from '../draw.js';
 import { createCanvas } from '../util.js';

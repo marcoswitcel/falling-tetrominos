@@ -1,5 +1,6 @@
 import { rgba } from '../../colors.js';
-import { NodeElement, percentage } from '../window.js';
+import { percentage } from '../window.js';
+import { NodeElement } from '../node-element.js';
 
 export const menuIDs = {
     /** @type {NodeElement} */
