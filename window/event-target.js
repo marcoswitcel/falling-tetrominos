@@ -1,4 +1,4 @@
-import { makeFieldReadOnly } from "./utility.js";
+import { makeFieldReadOnly } from './utility.js';
 
 /**
  * ### Classe base dos eventos
