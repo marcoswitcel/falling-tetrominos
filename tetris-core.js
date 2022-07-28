@@ -261,7 +261,7 @@ export class TetrisArena {
     }
 
     newBlock() {
-        const blockMatrix = TetrisBlockManager.getRandomBlockMatrix()
+        const blockMatrix = TetrisBlockManager.getRandomBlockMatrix();
         const sx = (this.width /  2 | 0) - (blockMatrix.matrix[0].length / 2 | 0);
         const sy = 0;
         this.fallingBlock = new FallingBlock(sx, sy, blockMatrix);

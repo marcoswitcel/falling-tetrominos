@@ -1,8 +1,12 @@
 
+/**
+ * @typedef {Readonly<{ code: number, matrix: number[][]}>} Tetromino
+ */
+
 export class TetrisBlockManager {
 
     /**
-     * @returns {{ code: number, matrix: number[][]}}
+     * @returns {Tetromino}
      */
     static getRandomBlockMatrix() {
         const blocks = ['T', 'L', 'I', 'B', 'J', 'Z', 'ZI'];
@@ -13,6 +17,11 @@ export class TetrisBlockManager {
         );
     }
 
+    /**
+     * @private
+     * @readonly
+     * @type {Tetromino}
+     */
     static T = {
         code: 1,
         matrix: [
@@ -22,6 +31,11 @@ export class TetrisBlockManager {
         ],
     };
 
+    /**
+     * @private
+     * @readonly
+     * @type {Tetromino}
+     */
     static L = {
         code: 2,
         matrix: [
@@ -33,6 +47,11 @@ export class TetrisBlockManager {
     };
 
 
+    /**
+     * @private
+     * @readonly
+     * @type {Tetromino}
+     */
     static I = {
         code: 3,
         matrix: [
@@ -42,6 +61,11 @@ export class TetrisBlockManager {
         ],
     };
 
+    /**
+     * @private
+     * @readonly
+     * @type {Tetromino}
+     */
     static B = {
         code: 4,
         matrix: [
@@ -50,6 +74,11 @@ export class TetrisBlockManager {
         ],
     };
 
+    /**
+     * @private
+     * @readonly
+     * @type {Tetromino}
+     */
     static J = {
         code: 5,
         matrix: [
@@ -59,6 +88,11 @@ export class TetrisBlockManager {
         ],
     };
 
+    /**
+     * @private
+     * @readonly
+     * @type {Tetromino}
+     */
     static Z = {
         code: 6,
         matrix: [
@@ -67,6 +101,11 @@ export class TetrisBlockManager {
         ],
     };
 
+    /**
+     * @private
+     * @readonly
+     * @type {Tetromino}
+     */
     static ZI = {
         code: 7,
         matrix: [
