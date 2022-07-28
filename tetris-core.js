@@ -106,6 +106,16 @@ function isFallingBlockInFreeSpace(arena, block, width, height) {
     return true;
 }
 
+/**
+ * Função que rotacionado os elementos de uma matriz no sentido horário
+ * e anti-horário.
+ * @todo João, analisar e verificar se o comportamento da função de rotação
+ * está condizente com o que ela se propõe.
+ * 
+ * @param {Readonly<number[][]>} matrix Matriz original que será usada para produzir a nova
+ * @param {-1|1} dir Direção da rotação: 1 para sentido horário e -1 para sentido anti-horário
+ * @returns {number[][]} Retorna uma versão nova com os elementos rotacionados
+ */
 function rotateMatrix(matrix, dir) {
     const height = matrix.length;
     const width = matrix[0].length;
