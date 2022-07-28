@@ -35,7 +35,7 @@ class FallingBlock {
          */
         this.code = blockMatrix.code;
         /**
-         * @type {number[][]}
+         * @type {Readonly<number[][]>}
          */
         this.matrix = blockMatrix.matrix;
     }
@@ -80,8 +80,8 @@ function mergeArenaAndBlock(arena, fallingBlock, width, height) {
 /**
  * Função que checa se o espaço aonde o bloco que está caindo vai ser inserido
  * está de fato livre para inserção.
- * @param {number[][]} arena matriz que represente a arena
- * @param {FallingBlock} block Bloco que está sendo testado
+ * @param {Readonly<number[][]>} arena matriz que represente a arena
+ * @param {Readonly<FallingBlock>} block Bloco que está sendo testado
  * @param {number} width largura da arena
  * @param {number} height altura da arena
  * @returns {boolean}
