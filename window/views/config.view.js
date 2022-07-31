@@ -39,17 +39,32 @@ export const viewConfig = new NodeElement({
                 width: percentage(100),
             }, 
             children: (config) ? [
-                Button('Seta velocidade para 250ms', (event) => {
+                Button({
+                    value: {
+                        selected: config.initialSpeed === 250,
+                        toString() { return `Seta velocidade para 250ms${this.selected ? ' (atual)' : ''}`; },
+                    },
+                }, (event) => {
                     const config = storage.getItem('config');
                     config.initialSpeed = 250;
                     storage.setItem('config', config);
                 }),
-                Button('Seta velocidade para 500ms', (event) => {
+                Button({
+                    value: {
+                        selected: config.initialSpeed === 500,
+                        toString() { return `Seta velocidade para 500ms${this.selected ? ' (atual)' : ''}`; },
+                    },
+                }, (event) => {
                     const config = storage.getItem('config');
                     config.initialSpeed = 500;
                     storage.setItem('config', config);
                 }),
-                Button('Seta velocidade para 1000ms', (event) => {
+                Button({
+                    value: {
+                        selected: config.initialSpeed === 1000,
+                        toString() { return `Seta velocidade para 1000ms${this.selected ? ' (atual)' : ''}`; },
+                    },
+                }, (event) => {
                     const config = storage.getItem('config');
                     config.initialSpeed = 1000;
                     storage.setItem('config', config);

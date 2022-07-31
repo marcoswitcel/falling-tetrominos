@@ -8,11 +8,11 @@ import { NodeElement } from '../node-element.js';
  */
 
 /**
- * @param {string} title Título do botão
+ * @param {{ value: any }} data Objeto com o título do botão no campo value
  * @param {(event: ElementEvent) => void} [onClick]
  * @returns {NodeElement}
  */
-export function Button(title, onClick = null) {
+export function Button(data, onClick = null) {
     const node = new NodeElement({
         type: 'button',
         style: {
@@ -26,9 +26,7 @@ export function Button(title, onClick = null) {
             new NodeElement({
                 type: 'text',
                 style: { size: 16, height: 'auto' },
-                data: {
-                    value: title
-                }
+                data: data
             }),
         ]
     });
