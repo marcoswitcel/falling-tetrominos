@@ -136,8 +136,9 @@ export class TetrisArena {
     /**
      * @param {number} width Largura da arena
      * @param {number} height Altura da arena
+     * @param {number} [initialSpeed] Velocidade de queda inicial
      */
-    constructor(width, height) {
+    constructor(width, height, initialSpeed = 1000) {
         /**
          * @readonly
          * @type {number}
@@ -170,6 +171,10 @@ export class TetrisArena {
          * @type {number}
          */
         this.cumulatedTime = 0;
+        /**
+         * @type {number}
+         */
+        this.fallInterval = initialSpeed;
     }
 
     /**
@@ -183,9 +188,8 @@ export class TetrisArena {
 
         if (this.state !== ARENA_STATE.RUNNING) return;
 
-        if (this.cumulatedTime > 1000) {
+        if (this.cumulatedTime > this.fallInterval) {
             this.blockFall();
-
         } else {
             this.arenaMatrix = mergeArenaAndBlock(this.filledMatrix, this.fallingBlock, this.width, this.height);
         }
@@ -288,6 +292,7 @@ export class TetrisShell {
 
     constructor(config, debugInfoOn = false) {
         this.debugInfoOn = debugInfoOn;
+        /** @type {typeof import('./config.js').ArenaConfig} */
         this.config = config;
         /** @type {HTMLCanvasElement} */
         this.canvas = null;
@@ -307,7 +312,7 @@ export class TetrisShell {
     }
 
     setup() {
-        const { width, height, blockSize } = this.config;
+        const { width, height, blockSize, initialSpeed } = this.config;
 
         const canvas = createCanvas(width + 300, height, document.body);
         this.canvas = canvas;
@@ -319,7 +324,7 @@ export class TetrisShell {
         const context = canvas.getContext('2d');
         const offsetLeft = 150;
         
-        const arena = new TetrisArena(this.config.arena.x, this.config.arena.y);
+        const arena = new TetrisArena(this.config.arena.x, this.config.arena.y, initialSpeed);
         this.arena = arena;
 
         const labels = [];

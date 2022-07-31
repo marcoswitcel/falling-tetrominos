@@ -5,6 +5,7 @@ import StorageUtility from './storage-utility.js';
 
 main: {
     const storage = new StorageUtility('tetris-config');
+    /** @type {typeof ArenaConfig} */
     const config = (AppConfig.devMode) ?
         ArenaConfig :
         storage.getItemWithInialization('config', ArenaConfig);

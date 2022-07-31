@@ -8,7 +8,8 @@ export const ArenaConfig = {
         x: 10,
         y: 20
     },
-    blockSize: 30
+    blockSize: 30,
+    initialSpeed: 1000,
 }
 
 ArenaConfig.width = ArenaConfig.arena.x * ArenaConfig.blockSize;
