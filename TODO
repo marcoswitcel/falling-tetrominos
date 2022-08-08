@@ -1,7 +1,9 @@
 # Pendente
 
-* implementar suporte a velocidade incremental na queda dos tetrominos, tanto para poder diminuir o tempo conforme o jogo avança quanto para permitir ao usuário em que velocidade de que começar.
-* montar tela que permita selecionar configurações de velocidade, como: velocidade inicial (intervalo de queda), opção para habilitar ou não velocidade incremental, e talvez opção de taxa de incremento da velocidade.
+* implementar suporte a velocidade incremental na queda dos tetrominos, tanto para poder diminuir o tempo conforme o jogo avança quanto para permitir ao usuário escolher em que velocidade de que começar
+  * Tetris Shell agora aceita parâmetro de velocidade e velocidade pode ser mudada conforme o jogo executa -- ok
+  * Implementar algum tipo de regra que faça a velocidade de queda aumentar -- pendente
+* montar tela que permita selecionar configurações de velocidade, como: velocidade inicial (intervalo de queda), opção para habilitar ou não velocidade incremental, e talvez opção de taxa de incremento da velocidade -- parcialmente
 
 ## Core gameplay
 
