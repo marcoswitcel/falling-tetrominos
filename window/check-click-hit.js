@@ -4,12 +4,14 @@
  */
 
 /**
- *
+ * Função que checa se um dado ponto (x e y) estaria dentro de algum nó.
+ * Essa função considera os mesmos cálculos feitos na hora de renderizar a
+ * árvore.
  * @param {NodeElement} rootNode
  * @param {number} x
  * @param {number} y
  * @param {number[]} [offset]
- * @return {NodeElement} Elemento que sofreu o click
+ * @return {NodeElement|null} Elemento que sofreu o click
  */
 export function checkClickHit(rootNode, x, y, offset = [0, 0]) {
     let [offsetX, offsetY] = offset;
