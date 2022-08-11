@@ -43,10 +43,13 @@ export default class StorageUtility {
     jsonEncode = false;
 
     /**
-     * 
-     * @param {string} [prefix] 
-     * @param {'local' | 'session'} [type] 
-     * @param {boolean} [jsonEncode] 
+     * Contrói uma instância com as configurações providas
+     * @param {string} [prefix] Nome do prefixo usado para criar o `espaços`
+     * de armazenamento usado para criar a separação das chaves
+     * @param {'local' | 'session'} [type] Tipo de persistência, permanente
+     * `local`, ou por sessão de navegação `session`
+     * @param {boolean} [jsonEncode] Parâmetro que controla se os valores serão
+     * automaticamente encodados e decodados usando o formato JSON
      */
     constructor(prefix = '', type = 'local', jsonEncode = true) {
         this.prefix = prefix;
