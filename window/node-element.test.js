@@ -3,6 +3,11 @@ import { TestCase } from '../test/test-case.js';
 import { NodeElement } from './node-element.js';
 
 
+/**
+ * @since 2022.08.11
+ * @todo João, expandir os cenários de testes para contemplar
+ * vários casos de uso da aplicação e possíveis outros, por prática
+ */
 export class NodeElementTest extends TestCase {
     
     ['testando construtor apenas com o parâmetro type']() {
