@@ -11,7 +11,7 @@
  * @param {number} x
  * @param {number} y
  * @param {number[]} [offset]
- * @return {NodeElement|null} Elemento que sofreu o click
+ * @returns {NodeElement|null} Elemento que sofreu o click
  */
 export function checkClickHit(rootNode, x, y, offset = [0, 0]) {
     let [offsetX, offsetY] = offset;

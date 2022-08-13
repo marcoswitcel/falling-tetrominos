@@ -69,7 +69,7 @@ export class Ticker {
 
     /**
      * Método que para a execução do ticker
-     * @return {void}
+     * @returns {void}
      */
     clear() {
         cancelAnimationFrame(this.tickerID);
@@ -84,7 +84,7 @@ export class Ticker {
      * @todo João, se o framerate passado na função construtora for maior que o
      * framerate do monitor essa classe utilitária não vai ter o comportamento
      * correto.
-     * @return {void}
+     * @returns {void}
      */
     start() {
         if (!this.running) {

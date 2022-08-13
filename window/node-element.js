@@ -64,7 +64,7 @@ export class NodeElement {
      * específico de evento for despachado neste elemento.
      * @param {EventTypeList} type
      * @param {(event: ElementEvent) => void} handler
-     * @return {void}
+     * @returns {void}
      */
     addListener(type, handler) {
         this.eventTarget.addListener(type, handler);
@@ -75,7 +75,7 @@ export class NodeElement {
      * evento. Caso ela não existir, apenas ignora.
      * @param {EventTypeList} type
      * @param {(event: ElementEvent) => void} handler
-     * @return {void}
+     * @returns {void}
      */
     removeListener(type, handler) {
         this.eventTarget.removeListener(type, handler);
@@ -86,7 +86,7 @@ export class NodeElement {
      * o seu processamento pelas funções de resposta (handlers).
      * @param {EventTypeList} eventType Tipo do evento
      * @param {any} [data] Dados do evento
-     * @return {void}
+     * @returns {void}
      */
     dispatchEvent(eventType, data = null) {
         const event = new ElementEvent(eventType, {
@@ -107,7 +107,7 @@ export class NodeElement {
      * @private
      * @param {ElementEvent} event Evento que será encaminhado para esse
      * elemento
-     * @return {void}
+     * @returns {void}
      */
     bubbleEvent(event) {
         // Atualiza o currentTarget
@@ -127,7 +127,7 @@ export class NodeElement {
      * de propagação e outros tipos de comportamentos causados pelo evento.
      * @private
      * @param {ElementEvent} event Evento sendo processado
-     * @return {void}
+     * @returns {void}
      */
     defaultHandler(event) {
         if (event.bubbles && this.parent && !event.defaultPrevented) {
@@ -147,7 +147,7 @@ export class NodeElement {
 
     /**
      * @readonly
-     * @return {number}
+     * @returns {number}
      */
     get width() {
         const width = this.style.width;
@@ -164,7 +164,7 @@ export class NodeElement {
 
     /**
      * @readonly
-     * @return {number}
+     * @returns {number}
      */
     get height() {
         const height = this.style.height;

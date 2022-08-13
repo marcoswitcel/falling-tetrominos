@@ -61,7 +61,7 @@ export class EventTarget {
      * ela será apenas ignorada.
      * @param {string} type Tipo do evento aonde a função deve ser associada
      * @param {(event: Event) => void} handler Função que deve ser adicionada a lista
-     * @return {void}
+     * @returns {void}
      */
     addListener(type, handler) {
         if (!this.eventMap.has(type)) {
@@ -79,7 +79,7 @@ export class EventTarget {
      * removida, senão será apenas ignorada.
      * @param {string} type Tipo do evento aonde a função deve ser desassociada
      * @param {(event: Event) => void} handler Função que deve ser removida caso exista
-     * @return {void}
+     * @returns {void}
      */
     removeListener(type, handler) {
         if (this.eventMap.has(type)) {
@@ -91,7 +91,7 @@ export class EventTarget {
      * Despacha um evento pelo conjunto de todas as funções de resposta
      * associadas ao tipo do evento.
      * @param {Event} event Evento que será despechado
-     * @return {void}
+     * @returns {void}
      */
     dispatchEvent(event) {
         const handlers = this.eventMap.get(event.type) || new Set;

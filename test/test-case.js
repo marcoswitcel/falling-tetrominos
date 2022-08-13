@@ -3,7 +3,7 @@ export class TestCase {
 
     /**
      * Procedimento que será chamado antes de cada método de teste.
-     * @return {void}
+     * @returns {void}
      */
     beforeEach() { }
 
@@ -12,13 +12,13 @@ export class TestCase {
      * para realizar procedimentos de inicialização que precisam ser feitos
      * apenas uma vez durante todo o ciclo de teste da classe. Logo antes de
      * iniciar a execução dos testes.
-     * @return {void}
+     * @returns {void}
      */
     beforeAll() { }
 
     /**
      * Procedimento que será chamado após cada método de teste
-     * @return {void}
+     * @returns {void}
      */
     afterEach() { }
 
@@ -27,7 +27,7 @@ export class TestCase {
      * para realizar procedimentos de encerramento que precisam ser feitos
      * apenas uma vez durante todo o ciclo de teste da classe. Logo após o
      * término da execução de todos os testes.
-     * @return {void}
+     * @returns {void}
      */
     afterAll() { }
 

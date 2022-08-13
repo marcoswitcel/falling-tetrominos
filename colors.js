@@ -5,7 +5,7 @@
  * @param {number} g Entre 0 e 255 (integer)
  * @param {number} b Entre 0 e 255 (integer)
  * @param {number} [a] Entre 0 e 1 (flot)
- * @return {RGBA}
+ * @returns {RGBA}
  */
 export function rgba(r, g, b, a = 1) {
     return new RGBA(r, g, b, a);

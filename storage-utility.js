@@ -78,7 +78,7 @@ export default class StorageUtility {
      * Retorna a chave prefixada
      * @private
      * @param {string} key chave que será prefixada
-     * @return {string} a chave prefixada
+     * @returns {string} a chave prefixada
      */
     prefixedKey(key) {
         /** @TODO analisar com calma as possibilidades de conflito de chave */
@@ -88,7 +88,7 @@ export default class StorageUtility {
     /**
      * 
      * @param {string} key 
-     * @return {string|Object|null}
+     * @returns {string|Object|null}
      */
     getItem(key) {
         key = this.prefixedKey(key);
@@ -99,7 +99,7 @@ export default class StorageUtility {
     
     /**
      * @param {string} key
-     * @return {void}
+     * @returns {void}
      */
     removeItem(key) {
         key = this.prefixedKey(key);
@@ -110,7 +110,7 @@ export default class StorageUtility {
      * Persiste um valor associado a uma chave no armazenamento escolhido
      * @param {string} key chave
      * @param {any} value valor
-     * @return {void}
+     * @returns {void}
      */
     setItem(key, value) {
         key = this.prefixedKey(key);
@@ -119,7 +119,7 @@ export default class StorageUtility {
     }
 
     /**
-     * @return {void}
+     * @returns {void}
      */
     clear() {
         const prefixPattern = this.prefixedKey('');
@@ -134,7 +134,7 @@ export default class StorageUtility {
     /**
      * @param {string} key
      * @param {any} defaultValue  
-     * @return {string|Object|null}
+     * @returns {string|Object|null}
      */
     getItemWithInialization(key, defaultValue) {
         const prefixedKey = this.prefixedKey(key);

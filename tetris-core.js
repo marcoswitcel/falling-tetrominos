@@ -197,7 +197,7 @@ export class TetrisArena {
 
     /**
      * Método que reinicia a arena para uma nova partida
-     * @return {void}
+     * @returns {void}
      */
     reset() {
         this.state = ARENA_STATE.RUNNING;
