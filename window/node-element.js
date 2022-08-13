@@ -17,15 +17,29 @@ export class NodeElement {
      * @param {object} [param0.data]
      */
     constructor({ parent = null, children = [], type, style = {}, data = null }) {
-        /** @type {NodeElement} Elemento parente (pai) deste elemento */
+        /**
+         * Elemento parente (pai) deste elemento
+         * @type {NodeElement|null}
+         */
         this.parent = parent;
-        /** @type {Set<NodeElement>} Conjunto com os filhos deste elemento */
+        /**
+         * Conjunto com os filhos deste elemento
+         * @readonly
+         * @type {Set<NodeElement>}
+         */
         this.children = (children instanceof Set) ? children : new Set(children);
-        /** @readonly @type {string} */
+        /**
+         * @readonly
+         * @type {string}
+         */
         this.type = type;
-        /** @type {Style} */
+        /**
+         * @type {Style}
+         */
         this.style = new Style(style);
-        /** @type {object} */
+        /**
+         * @type {object|null}
+         */
         this.data = data;
         /**
          * @private
@@ -42,12 +56,13 @@ export class NodeElement {
      * Se o elemento já for filho de outro elemento, o vínculo será desfeito
      * e um novo será criado com este elemento.
      * @param {NodeElement} element
+     * @returns {void}
      */
     appendChild(element) {
         // Um elemento não pode ter a si mesmo como filho
         if (element === this)
             return;
-
+        
         // Se o elemento já era filho de alguém, remove-o da antiga lista
         if (element.parent) {
             element.parent.children.delete(element);
@@ -138,6 +153,7 @@ export class NodeElement {
     /**
      * Atualiza a propriedade `parent` para referenciar o novo `parent`
      * @private
+     * @returns {void}
      */
     setParentOfChildren() {
         for (const children of this.children) {
