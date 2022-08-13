@@ -1,6 +1,6 @@
 # Um exercício de recriação do famoso jogo Tetris
 
-Esse repositório conteḿ um exercício de recriação do famoso jogo Tetris, desenvolvido com HTML/CSS e JS.
+Esse repositório contém um exercício de recriação do famoso jogo Tetris, desenvolvido com HTML/CSS e JS.
 
 ## Para rodar
 
