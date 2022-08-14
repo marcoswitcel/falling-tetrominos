@@ -10,35 +10,41 @@ import { Style, Percentage } from './window.js';
 export class NodeElement {
     
     /**
+     * Constrói uma instância `NodeElement` com os parâmetros providos.
      * @param {Object} param0
+     * @param {string} param0.type
      * @param {NodeElement} [param0.parent]
      * @param {Set<NodeElement>|NodeElement[]} [param0.children]
-     * @param {string} param0.type
      * @param {object} [param0.style]
      * @param {object} [param0.data]
      */
-    constructor({ parent = null, children = [], type, style = {}, data = null }) {
+    constructor({ type, parent = null, children = [], style = {}, data = null }) {
         /**
          * Elemento parente (pai) deste elemento
+         * @public
          * @type {NodeElement|null}
          */
         this.parent = parent;
         /**
          * Conjunto com os filhos deste elemento
+         * @public
          * @readonly
          * @type {Set<NodeElement>}
          */
         this.children = (children instanceof Set) ? children : new Set(children);
         /**
+         * @public
          * @readonly
          * @type {string}
          */
         this.type = type;
         /**
+         * @public
          * @type {Style}
          */
         this.style = new Style(style);
         /**
+         * @public
          * @type {object|null}
          */
         this.data = data;
@@ -79,6 +85,7 @@ export class NodeElement {
     /**
      * Adiciona uma função de resposta para responder quando algum tipo
      * específico de evento for despachado neste elemento.
+     * @public
      * @param {EventTypeList} type
      * @param {(event: ElementEvent) => void} handler
      * @returns {void}
@@ -90,6 +97,7 @@ export class NodeElement {
     /**
      * Remove uma função de resposta vinculada a algum tipo específico de
      * evento. Caso ela não existir, apenas ignora.
+     * @public
      * @param {EventTypeList} type
      * @param {(event: ElementEvent) => void} handler
      * @returns {void}
@@ -101,6 +109,7 @@ export class NodeElement {
     /**
      * Método público que despacha o evento no elemento, causando assim
      * o seu processamento pelas funções de resposta (handlers).
+     * @public
      * @param {EventTypeList} eventType Tipo do evento
      * @param {any} [data] Dados do evento
      * @returns {void}
@@ -164,6 +173,7 @@ export class NodeElement {
     }
 
     /**
+     * @public
      * @readonly
      * @returns {number}
      */
@@ -181,6 +191,7 @@ export class NodeElement {
     }
 
     /**
+     * @public
      * @readonly
      * @returns {number}
      */
