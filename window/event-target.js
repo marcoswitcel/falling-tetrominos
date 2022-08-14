@@ -16,11 +16,13 @@ export class Event {
      */
     constructor(type, data = null) {
         /**
+         * @public
          * @readonly
          * @type {string} nome do tipo de evento
          */
         this.type = type;
         /**
+         * @public
          * @readonly
          * @type {any} dados do evento caso seja necessário
          */
@@ -50,8 +52,9 @@ export class EventTarget {
      */
     constructor() {
         /**
+         * @private
          * @readonly Criado na construção do objeto
-         * @type {Map<string, Set<(any) => void>>}
+         * @type {Map<string, Set<(Event) => void>>}
          */
         this.eventMap = new Map;
     }
@@ -59,6 +62,7 @@ export class EventTarget {
     /**
      * Adiciona uma função ao conjunto caso ela ainda não faça, se fizer
      * ela será apenas ignorada.
+     * @public
      * @param {string} type Tipo do evento aonde a função deve ser associada
      * @param {(event: Event) => void} handler Função que deve ser adicionada a lista
      * @returns {void}
@@ -77,6 +81,7 @@ export class EventTarget {
     /**
      * Caso a função passada exista no conjunto associado ao tipo ela será
      * removida, senão será apenas ignorada.
+     * @public
      * @param {string} type Tipo do evento aonde a função deve ser desassociada
      * @param {(event: Event) => void} handler Função que deve ser removida caso exista
      * @returns {void}
@@ -90,6 +95,7 @@ export class EventTarget {
     /**
      * Despacha um evento pelo conjunto de todas as funções de resposta
      * associadas ao tipo do evento.
+     * @public
      * @param {Event} event Evento que será despechado
      * @returns {void}
      */
