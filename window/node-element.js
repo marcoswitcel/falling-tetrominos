@@ -8,6 +8,7 @@ import { Style, Percentage } from './window.js';
  */
 
 export class NodeElement {
+    
     /**
      * @param {Object} param0
      * @param {NodeElement} [param0.parent]
@@ -55,7 +56,8 @@ export class NodeElement {
      * Adiciona um elemento ao final do conjunto de filhos deste elemento.
      * Se o elemento já for filho de outro elemento, o vínculo será desfeito
      * e um novo será criado com este elemento.
-     * @param {NodeElement} element
+     * @public
+     * @param {NodeElement} element Elemento a ser adicionado a lista de filhos
      * @returns {void}
      */
     appendChild(element) {

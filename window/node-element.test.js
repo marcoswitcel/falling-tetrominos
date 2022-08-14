@@ -26,11 +26,27 @@ export class NodeElementTest extends TestCase {
         rootNode.appendChild(rootNode);
         assert(rootNode.children.size === 0, 'Nó não aceita a si mesmo como filho');
 
+        assert(childNode1.parent === null, 'Quando criado o nó não possui `parent`');
         rootNode.appendChild(childNode1);
-        assert(rootNode.children.has(childNode1), 'Consegue adicionar um filho');
+        assert(
+            rootNode.children.has(childNode1),
+            'Nós conseguem adicionar um outro nó como filho'
+        );
+        assert(
+            childNode1.parent === rootNode,
+            'O elemento filho tem seu pai setado ao ser adicionado a outro nó'
+        );
 
         rootNode.appendChild(childNode1);
         assert(rootNode.children.size === 1, 'O mesmo nó não é adicionado duas vezes');
+
+        childNode2.appendChild(childNode1);
+        assert(
+            childNode1.parent === childNode2,
+            'O elemento filho tem sua propriedade `parent` atualizada ao ser adicionado a outro nó'
+        );
+
+        assert(rootNode.children.size === 0, 'Antigo elemento pai tem sua lista de filhos atualizada');
 
         /**
          * @todo João, continuar expandindo, refatorando e documentando
