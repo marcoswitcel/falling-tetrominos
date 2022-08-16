@@ -69,6 +69,7 @@ export class Ticker {
 
     /**
      * Método que para a execução do ticker
+     * @public
      * @returns {void}
      */
     clear() {
@@ -84,6 +85,7 @@ export class Ticker {
      * @todo João, se o framerate passado na função construtora for maior que o
      * framerate do monitor essa classe utilitária não vai ter o comportamento
      * correto.
+     * @public
      * @returns {void}
      */
     start() {

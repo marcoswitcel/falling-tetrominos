@@ -3,12 +3,19 @@ import { TestCase } from './test/test-case.js';
 import { assert } from './test/assert-utils.js';
 
 /**
- * @todo João, terminar de analisar se os casos principais estão cobertos
+ * @todo João, terminar de analisar se os casos principais estão cobertos.
  */
 export class TickerTest extends TestCase {
+
     requestAnimationFrame;
     fns;
 
+    /**
+     * @todo João, considerar mover esse cara para um pacote dedicado à
+     * utilitários de teste.
+     * @private
+     * @returns {boolean}
+     */
     runAFrame() {
         try {
             const fns = [...this.fns];
@@ -44,7 +51,7 @@ export class TickerTest extends TestCase {
 
         const ticker = new Ticker([ testFunction ]);
         ticker.start();
-        assert(rodei === 1, 'rodei a primeira fez no start');
+        assert(rodei === 1, 'rodei a primeira vez no start');
         this.runAFrame();
         assert(rodei === 2, 'rodei a segunda vez no frame');
 
