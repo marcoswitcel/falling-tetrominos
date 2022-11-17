@@ -6,7 +6,7 @@ Esse repositório contém um exercício de recriação do famoso jogo Tetris, de
 
 Apenas clone o projeto e suba um servidor HTTP na pasta raiz, daí é só acessar o `index.html`. Também existe o link público a seguir:
 
-Link público: [https://marcoswitcel.github.io/tetris/](https://marcoswitcel.github.io/tetris/).
+Link público: [https://marcoswitcel.github.io/falling-tetrominos/](https://marcoswitcel.github.io/falling-tetrominos/).
 
 ## Ambiente de desenvolvimento e técnicas usadas
 
