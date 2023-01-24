@@ -20,7 +20,7 @@
 * sistema de margin em porcentagem? ou margim auto?
 * sistema de hover a transition
 * sistema que permita a execução de músicas de fundo
-* testes para ajudar a documentar os componentes de layout, sistema de eventos? -- parcielmente, evoluindo cobertura e sistema de teste
+* testes para ajudar a documentar os componentes de layout, sistema de eventos? -- parcialmente, evoluindo cobertura e sistema de teste
 * sistema que permita o mix de classes para facilitar a reutilização de funcionalidades como eventTarget?
 
 ## Sistema de testes e cobrir alguns testes essenciais
@@ -39,4 +39,4 @@ função como expect(2).toBeEqual(2)
 * rotação incorreta dos blocos
 * sobrepondo blocos quando o jogo termina (ocorre mas de forma mais sutil agora)
 * avaliar melhor, mas quando o bloco está sobre o "solo" ainda é possível movê-lo na horizontal até a queda ser finalizada
-* avaliar melhor se os blocos que ficam sobre áreas fazias deveria cair ou permanecer sobre o espaço vazio flutuando
+* avaliar melhor se os blocos que ficam sobre áreas vazias deveria cair ou permanecer sobre o espaço vazio flutuando
