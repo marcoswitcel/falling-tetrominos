@@ -4,9 +4,27 @@ import { NodeElement } from '../node-element.js';
 import StorageUtility from '../../storage-utility.js';
 import { Button } from '../components/button.component.js';
 
+/**
+ * @typedef {import('../element-event.js').ElementEvent} ElementEvent
+ */
 
 const storage = new StorageUtility('tetris-config');
 const config = storage.getItem('config');
+
+/**
+ * @param {ElementEvent} event 
+ * @returns {void}
+ */
+const handleSelectedOption = (event) => {
+    const target = [...event.currentTarget.children][0];
+    
+    const config = storage.getItem('config');
+    config.initialSpeed = target.data.value.speedValue;
+    storage.setItem('config', config);
+
+    target.data.preprocessedText = null;
+    target.data.value.selected = true;
+};
 
 export const configIDs = {
     /** @type {NodeElement} */
@@ -41,34 +59,25 @@ export const viewConfig = new NodeElement({
             children: (config) ? [
                 Button({
                     value: {
+                        speedValue: 250,
                         selected: config.initialSpeed === 250,
                         toString() { return `Seta velocidade para 250ms${this.selected ? ' (atual)' : ''}`; },
                     },
-                }, (event) => {
-                    const config = storage.getItem('config');
-                    config.initialSpeed = 250;
-                    storage.setItem('config', config);
-                }),
+                }, handleSelectedOption),
                 Button({
                     value: {
+                        speedValue: 500,
                         selected: config.initialSpeed === 500,
                         toString() { return `Seta velocidade para 500ms${this.selected ? ' (atual)' : ''}`; },
                     },
-                }, (event) => {
-                    const config = storage.getItem('config');
-                    config.initialSpeed = 500;
-                    storage.setItem('config', config);
-                }),
+                }, handleSelectedOption),
                 Button({
                     value: {
+                        speedValue: 1000,
                         selected: config.initialSpeed === 1000,
                         toString() { return `Seta velocidade para 1000ms${this.selected ? ' (atual)' : ''}`; },
                     },
-                }, (event) => {
-                    const config = storage.getItem('config');
-                    config.initialSpeed = 1000;
-                    storage.setItem('config', config);
-                }),
+                }, handleSelectedOption),
             ] : [
                 new NodeElement({
                     type: 'text',
