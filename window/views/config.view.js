@@ -12,6 +12,28 @@ const storage = new StorageUtility('tetris-config');
 const config = storage.getItem('config');
 
 /**
+ * Função que busca todos os elementos com um determinado valor para `type` dentro
+ * de um dado elemento raíz.
+ * @param {NodeElement} root Elemento raíz aonde deve se buscar a lista
+ * @param {string} type nome do tipo de elemento buscado. 'text', 'container', 'view'
+ * @returns {NodeElement[]} Sempre retorna uma lista com todos os elementos encontrados,
+ * podendo ser uma lista vazia, caso não haja nenhum.
+ */
+function findAllByType(root, type) {
+    /** @type {NodeElement[]} */
+    const allFoundElements = [];
+
+    for (const children of root.children) {
+        if (children.type === type) {
+            allFoundElements.push(children);
+        }
+        allFoundElements.push(...findAllByType(children, type));
+    }
+
+    return allFoundElements;
+}
+
+/**
  * @param {ElementEvent} event 
  * @returns {void}
  */
@@ -24,6 +46,13 @@ const handleSelectedOption = (event) => {
 
     target.data.preprocessedText = null;
     target.data.value.selected = true;
+
+    for (const textElement of findAllByType(configIDs.container, 'text')) {
+        if (textElement === target) continue;
+
+        textElement.data.preprocessedText = null;
+        textElement.data.value.selected = false;
+    }
 };
 
 export const configIDs = {
