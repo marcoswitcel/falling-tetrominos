@@ -59,7 +59,9 @@ export default class StorageUtility {
     }
 
     /**
-     * Retorna o número de pares de chave e valor
+     * Retorna o número de pares de chave e valor aos quais esse storage tem acesso.
+     * Essa pode ser uma operação lenta, pois passará por todas as chaves do tipo de `Storage` usado
+     * e verificará se são acessíveis através dessa instância.
      * @readonly
      * @property {number} length
      */
