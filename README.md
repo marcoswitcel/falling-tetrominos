@@ -23,3 +23,5 @@ Como técnica fiz uso de modularização seguindo o padrão moderno [módulos ES
 * Gist (usuário David Mark) com diferenças do modo restrito: [https://gist.github.com/david-mark/7a06527c5e9da908ae50a73b60ddb57f](https://gist.github.com/david-mark/7a06527c5e9da908ae50a73b60ddb57f)
 * Strict Mode: [https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Strict_mode](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Strict_mode)
 * Strict Mode sempre habilitado em código que faz uso de módulos ES6: [https://262.ecma-international.org/6.0/#sec-strict-mode-code](https://262.ecma-international.org/6.0/#sec-strict-mode-code)
+* MDN sound example: [https://github.com/mdn/webaudio-examples](https://github.com/mdn/webaudio-examples), [https://mdn.github.io/webaudio-examples/audio-basics/](https://mdn.github.io/webaudio-examples/audio-basics/)
+* Tutoriais API de Audio: [https://web.dev/webaudio-intro/](https://web.dev/webaudio-intro/)
