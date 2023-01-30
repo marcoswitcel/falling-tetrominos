@@ -21,3 +21,14 @@ export function makeFieldReadOnly(object, field, configurable = false) {
         configurable: configurable,
     });
 }
+
+/**
+ * Função que seta o título da página/aba
+ * @param {string} title Título da página/aba
+ * @param {Document} doc página de referência
+ */
+export function setPageTitle(title, doc = window.document) {
+    if (doc) {
+        doc.title = title;
+    }
+}

@@ -8,6 +8,7 @@ import StorageUtility from '../storage-utility.js';
 import { drawElement } from './draw-element.js';
 import { checkClickHit } from './check-click-hit.js';
 import { Ticker } from '../ticker.js';
+import { setPageTitle } from './utility.js';
 
 function runTest() {
     
@@ -66,10 +67,12 @@ function runTest() {
         });
     }
 
+    setPageTitle('Menu - Window System');
     
     menuIDs.button.addListener('click', (event) => {
         viewMenu.style.display = 'none';
         viewConfig.style.display = 'block';
+        setPageTitle('Configurações - Window System');
     });
 
     menuIDs.addButton.addListener('click', (event) => {
@@ -84,6 +87,7 @@ function runTest() {
     configIDs.button.addListener('click', (event) => {
         viewConfig.style.display = 'none';
         viewMenu.style.display = 'block';
+        setPageTitle('Menu - Window System');
     });
 
     root.addListener('click', (event) => {
