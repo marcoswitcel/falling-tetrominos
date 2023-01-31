@@ -6,6 +6,8 @@ export const menuIDs = {
     /** @type {NodeElement} */
     button: null,
     /** @type {NodeElement} */
+    tetrominosViewButton: null,
+    /** @type {NodeElement} */
     addButton: null,
     /** @type {NodeElement} */
     addButtonText: null,
@@ -36,6 +38,15 @@ export const viewMenu = new NodeElement({
                 style: { size: 16, height: 'auto' },
                 data: {
                     value: 'Configurações'
+                }
+            }),
+        ]}),
+        menuIDs.tetrominosViewButton = new NodeElement({ type: 'button', style: { width: percentage(50), height: 'auto', margin: [ 10, 0, 0 ], padding: [ 15 ], color: rgba(0, 0, 255) }, children: [
+            new NodeElement({
+                type: 'text',
+                style: { size: 16, height: 'auto' },
+                data: {
+                    value: 'Tela teste Falling Tetrominos'
                 }
             }),
         ]}),

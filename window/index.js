@@ -9,6 +9,7 @@ import { drawElement } from './draw-element.js';
 import { checkClickHit } from './check-click-hit.js';
 import { Ticker } from '../ticker.js';
 import { setPageTitle } from './utility.js';
+import { viewPlayTetrominos } from './views/play-tetrominos.view.js';
 
 function runTest() {
     
@@ -31,7 +32,8 @@ function runTest() {
         },
         children: [
             viewMenu,
-            viewConfig
+            viewConfig,
+            viewPlayTetrominos
         ],
     });
 
@@ -73,6 +75,13 @@ function runTest() {
         viewMenu.style.display = 'none';
         viewConfig.style.display = 'block';
         setPageTitle('Configurações - Window System');
+    });
+
+    menuIDs.tetrominosViewButton.addListener('click', (event) => {
+        viewMenu.style.display = 'none';
+        viewConfig.style.display = 'none';
+        viewPlayTetrominos.style.display = 'block';
+        setPageTitle('Play Falling Tetrominos - Window System');
     });
 
     menuIDs.addButton.addListener('click', (event) => {
