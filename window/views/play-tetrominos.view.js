@@ -1,4 +1,5 @@
 import { rgba } from '../../colors.js';
+import { Button } from '../components/button.component.js';
 import { NodeElement } from '../node-element.js';
 import { percentage } from '../window.js';
 
@@ -15,4 +16,10 @@ export const viewPlayTetrominos = new NodeElement({
         height: percentage(100),
         color: rgba(255, 0, 201),
     },
+    children: [
+        Button({ value: 'Jogar'}, null, {
+            color: rgba(0, 0, 0, 0.2),
+            margin: [ 175, 0, 0, 175 ]
+        })
+    ]
 });

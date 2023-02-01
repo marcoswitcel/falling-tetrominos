@@ -10,9 +10,10 @@ import { NodeElement } from '../node-element.js';
 /**
  * @param {{ value: any }} data Objeto com o título do botão no campo value
  * @param {(event: ElementEvent) => void} [onClick]
+ * @param {object} [style] Sobrescrita da estilização padrão
  * @returns {NodeElement}
  */
-export function Button(data, onClick = null) {
+export function Button(data, onClick = null, style = {}) {
     const node = new NodeElement({
         type: 'button',
         style: {
@@ -20,7 +21,8 @@ export function Button(data, onClick = null) {
             height: 'auto',
             margin: [ 0, 0, 10 ],
             padding: [ 10 ],
-            color: rgba(0, 0, 255)
+            color: rgba(0, 0, 255),
+            ...style,
         },
         children: [
             new NodeElement({
