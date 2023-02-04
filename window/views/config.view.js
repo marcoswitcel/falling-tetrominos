@@ -3,6 +3,7 @@ import { percentage } from '../window.js';
 import { NodeElement } from '../node-element.js';
 import StorageUtility from '../../storage-utility.js';
 import { Button } from '../components/button.component.js';
+import { findAllByType } from '../utility.js';
 
 /**
  * @typedef {import('../element-event.js').ElementEvent} ElementEvent
@@ -10,28 +11,6 @@ import { Button } from '../components/button.component.js';
 
 const storage = new StorageUtility('tetris-config');
 const config = storage.getItem('config');
-
-/**
- * Função que busca todos os elementos com um determinado valor para `type` dentro
- * de um dado elemento raíz.
- * @param {NodeElement} root Elemento raíz aonde deve se buscar a lista
- * @param {string} type nome do tipo de elemento buscado. 'text', 'container', 'view'
- * @returns {NodeElement[]} Sempre retorna uma lista com todos os elementos encontrados,
- * podendo ser uma lista vazia, caso não haja nenhum.
- */
-function findAllByType(root, type) {
-    /** @type {NodeElement[]} */
-    const allFoundElements = [];
-
-    for (const children of root.children) {
-        if (children.type === type) {
-            allFoundElements.push(children);
-        }
-        allFoundElements.push(...findAllByType(children, type));
-    }
-
-    return allFoundElements;
-}
 
 /**
  * @param {ElementEvent} event 

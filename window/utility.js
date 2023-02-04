@@ -1,5 +1,9 @@
 
 /**
+ * @typedef {import('./node-element').NodeElement} NodeElement
+ */
+
+/**
  * Função que configura um campo preexistente em um objeto como
  * `apenas leitura`. A configuração pode ou não ser reversível, depende do
  * parâmetro `configurable`, por padrão definido como `false`.
@@ -31,4 +35,26 @@ export function setPageTitle(title, doc = window.document) {
     if (doc) {
         doc.title = title;
     }
+}
+
+/**
+ * Função que busca todos os elementos com um determinado valor para `type` dentro
+ * de um dado elemento raíz.
+ * @param {NodeElement} root Elemento raíz aonde deve se buscar a lista
+ * @param {string} type nome do tipo de elemento buscado. 'text', 'container', 'view'
+ * @returns {NodeElement[]} Sempre retorna uma lista com todos os elementos encontrados,
+ * podendo ser uma lista vazia, caso não haja nenhum.
+ */
+export function findAllByType(root, type) {
+    /** @type {NodeElement[]} */
+    const allFoundElements = [];
+
+    for (const children of root.children) {
+        if (children.type === type) {
+            allFoundElements.push(children);
+        }
+        allFoundElements.push(...findAllByType(children, type));
+    }
+
+    return allFoundElements;
 }
