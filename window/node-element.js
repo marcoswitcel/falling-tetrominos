@@ -20,7 +20,7 @@ export class NodeElement {
      */
     constructor({ type, parent = null, children = [], style = {}, data = null }) {
         /**
-         * Elemento parente (pai) deste elemento
+         * Elemento "pai", considerando a hierarquia, deste elemento
          * @public
          * @type {NodeElement|null}
          */
@@ -173,6 +173,7 @@ export class NodeElement {
     }
 
     /**
+     * @todo João, esses dois atributos deveria ir para outro lugar
      * @public
      * @readonly
      * @returns {number}
@@ -191,6 +192,7 @@ export class NodeElement {
     }
 
     /**
+     * @todo João, esses dois atributos deveria ir para outro lugar
      * @public
      * @readonly
      * @returns {number}
