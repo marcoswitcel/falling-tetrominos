@@ -1,3 +1,4 @@
+import { computeHeight, computeWidth } from './draw-element.js';
 
 /**
  * @typedef {import('./node-element.js').NodeElement} NodeElement
@@ -20,7 +21,7 @@ export function checkClickHit(rootNode, x, y, offset = [0, 0]) {
     offsetX += rootNode.style.margin.left;
     offsetY += rootNode.style.margin.top;
 
-    if (x >= offsetX && x <= offsetX + rootNode.width && y >= offsetY && y <= offsetY + rootNode.height) {
+    if (x >= offsetX && x <= offsetX + computeWidth(rootNode) && y >= offsetY && y <= offsetY + computeHeight(rootNode)) {
 
         // Novo offset com o padding
         offsetX += rootNode.style.padding.left;
@@ -37,7 +38,7 @@ export function checkClickHit(rootNode, x, y, offset = [0, 0]) {
                 return collidedElement;
             }
 
-            offsetY += child.height + child.style.margin.top + child.style.margin.bottom;
+            offsetY += computeHeight(child) + child.style.margin.top + child.style.margin.bottom;
         }
 
         return rootNode;
