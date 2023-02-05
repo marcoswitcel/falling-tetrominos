@@ -151,4 +151,63 @@ export class NodeElementTest extends TestCase {
 
         assert(isCorrect, 'O objeto passado deveria ter chegado ao handler');
     }
+
+    ['ouvindo um evento de um nó filho através do nó raíz']() {
+        const viewNode = new NodeElement({ type: 'view' });
+        const rootNode = new NodeElement({ type: 'root', children: [ viewNode ] });
+        let called = 0;
+
+        /** @type {(event: ElementEvent) => void} */
+        const handler = (event) => {
+            called++;
+        };
+
+        rootNode.addListener('click', handler);
+
+        viewNode.dispatchEvent('click');
+
+        assert(called === 1, 'O evento propagou do nó filho ao nó raíz');
+    }
+
+    ['ouvindo um evento multiplas vezes']() {
+        const viewNode = new NodeElement({ type: 'view' });
+        const rootNode = new NodeElement({ type: 'root', children: [ viewNode ] });
+        let called = 0;
+
+        /** @type {(event: ElementEvent) => void} */
+        const handler = (event) => {
+            called++;
+        };
+
+        rootNode.addListener('click', handler);
+        viewNode.addListener('click', handler);
+
+        viewNode.dispatchEvent('click');
+
+        assert(called === 2, 'O evento propagou do nó filho ao nó raíz e foi observado em ambos');
+    }
+
+    ['previnindo propagação de um evento']() {
+        const viewNode = new NodeElement({ type: 'view' });
+        const rootNode = new NodeElement({ type: 'root', children: [ viewNode ] });
+        let called = 0;
+
+        /** @type {(event: ElementEvent) => void} */
+        const handler = (event) => {
+            called++;
+        };
+
+        /** @type {(event: ElementEvent) => void} */
+        const handlerView = (event) => {
+            called++;
+            event.defaultPrevented = true;
+        };
+
+        rootNode.addListener('click', handler);
+        viewNode.addListener('click', handlerView);
+
+        viewNode.dispatchEvent('click');
+
+        assert(called === 1, 'O evento foi interceptado na raíz');
+    }
 }
